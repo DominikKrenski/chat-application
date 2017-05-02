@@ -55,6 +55,7 @@
     <Compile Include="Data\LoginUser.cs" />
     <Compile Include="Data\RegisterUser.cs" />
     <Compile Include="Interfaces\IServer.cs" />
+    <Compile Include="Interfaces\IServerCallback.cs" />
     <Compile Include="Migrations\201705021620512_InitialMigration.cs" />
     <Compile Include="Migrations\201705021620512_InitialMigration.Designer.cs">
       <DependentUpon>201705021620512_InitialMigration.cs</DependentUpon>
