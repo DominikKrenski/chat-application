@@ -47,8 +47,18 @@ namespace Service.Implementations
                     }
                     catch(DbEntityValidationException ex)
                     {
-                        Console.WriteLine($"Wystąpił błąd {ex.Message}");
-                        OperationContext.Current.GetCallbackChannel<IServerCallback>().RegisterNotify($"{ex.Message}");
+                        string message = "";
+
+                        foreach (var validationErrors in ex.EntityValidationErrors)
+                        {
+                            foreach(var validationError in validationErrors.ValidationErrors)
+                            {
+                                message += $"{validationError.PropertyName}: {validationError.ErrorMessage}{Environment.NewLine}";
+                            }
+                        }
+
+                        Console.WriteLine(message);
+                        OperationContext.Current.GetCallbackChannel<IServerCallback>().RegisterNotify($"{message}");
                     }
                     catch(EntityException ex)
                     {
