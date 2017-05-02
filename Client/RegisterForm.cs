@@ -12,9 +12,20 @@ namespace Client
 {
     public partial class RegisterForm : Form
     {
+        private enum Sex { Mężczyzna, Kobieta };
+
         public RegisterForm()
         {
             InitializeComponent();
+
+            SexComboBox.Items.Add(Sex.Mężczyzna);
+            SexComboBox.Items.Add(Sex.Kobieta);
+            SexComboBox.SelectedIndex = 0;
+        }
+
+        private void RegisterForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

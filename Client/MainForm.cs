@@ -16,5 +16,11 @@ namespace Client
         {
             InitializeComponent();
         }
+
+        private void RegisterMenuItem_Click(object sender, EventArgs e)
+        {
+            RegisterForm registerForm = new RegisterForm();
+            registerForm.Show();
+        }
     }
 }

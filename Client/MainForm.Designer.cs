@@ -80,6 +80,7 @@
             this.RegisterMenuItem.Name = "RegisterMenuItem";
             this.RegisterMenuItem.Size = new System.Drawing.Size(152, 22);
             this.RegisterMenuItem.Text = "Register";
+            this.RegisterMenuItem.Click += new System.EventHandler(this.RegisterMenuItem_Click);
             // 
             // ExitMenuItem
             // 
@@ -98,7 +99,7 @@
             // AuthorsMenuItem
             // 
             this.AuthorsMenuItem.Name = "AuthorsMenuItem";
-            this.AuthorsMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AuthorsMenuItem.Size = new System.Drawing.Size(116, 22);
             this.AuthorsMenuItem.Text = "Authors";
             // 
             // CurrentUsersLabel
