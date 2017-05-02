@@ -166,6 +166,7 @@
             this.RegisterButton.TabIndex = 14;
             this.RegisterButton.Text = "Create Account";
             this.RegisterButton.UseVisualStyleBackColor = true;
+            this.RegisterButton.Click += new System.EventHandler(this.RegisterButton_Click);
             // 
             // RegisterForm
             // 
