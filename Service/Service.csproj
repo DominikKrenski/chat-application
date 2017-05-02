@@ -52,6 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\LoginUser.cs" />
+    <Compile Include="Data\RegisterUser.cs" />
     <Compile Include="Interfaces\IServer.cs" />
     <Compile Include="Migrations\201705021620512_InitialMigration.cs" />
     <Compile Include="Migrations\201705021620512_InitialMigration.Designer.cs">
