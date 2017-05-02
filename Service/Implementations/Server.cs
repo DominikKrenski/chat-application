@@ -5,14 +5,16 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using Service.Data;
 
 namespace Service.Implementations
 {
-    // UWAGA: możesz użyć polecenia „Zmień nazwę” w menu „Refaktoryzuj”, aby zmienić nazwę klasy „Server” w kodzie i pliku konfiguracji.
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single, InstanceContextMode = InstanceContextMode.Single)]
     public class Server : IServer
     {
-        public void DoWork()
+        public void Register(RegisterUser user)
         {
+            throw new NotImplementedException();
         }
     }
 }
