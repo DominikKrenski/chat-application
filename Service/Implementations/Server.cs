@@ -47,13 +47,14 @@ namespace Service.Implementations
                     }
                     catch(DbEntityValidationException ex)
                     {
+                        db.Users.Remove(dbUser);
                         string message = "";
 
                         foreach (var validationErrors in ex.EntityValidationErrors)
                         {
                             foreach(var validationError in validationErrors.ValidationErrors)
                             {
-                                message += $"{validationError.PropertyName}: {validationError.ErrorMessage}{Environment.NewLine}";
+                                message += $"{validationError.ErrorMessage}{Environment.NewLine}";    
                             }
                         }
 

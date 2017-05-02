@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Service.Validators;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 namespace Service.Models
 {
     [Table("users")]
+    [PasswordMatchValidator("Password", "PasswordConfirm", ErrorMessage = "Password and password confirmation are not equal")]
     public class User
     {
         [Column("id")]
