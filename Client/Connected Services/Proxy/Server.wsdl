@@ -172,7 +172,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="ChatServiceEndpoint_LoginCallback_output_policy">
+  <wsp:Policy wsu:Id="ChatServiceEndpoint_LoginErrorCallback_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -195,7 +195,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="ChatServiceEndpoint_LoginErrorCallback_output_policy">
+  <wsp:Policy wsu:Id="ChatServiceEndpoint_UpdateUsersList_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -235,11 +235,11 @@
   <wsdl:message name="IServer_RegisterNotify_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:RegisterNotify" />
   </wsdl:message>
-  <wsdl:message name="IServer_LoginCallback_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:LoginCallback" />
-  </wsdl:message>
   <wsdl:message name="IServer_LoginErrorCallback_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:LoginErrorCallback" />
+  </wsdl:message>
+  <wsdl:message name="IServer_UpdateUsersList_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUsersList" />
   </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IServer">
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Register">
@@ -251,11 +251,11 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="RegisterNotify">
       <wsdl:output wsaw:Action="http://tempuri.org/IServer/RegisterNotify" message="tns:IServer_RegisterNotify_OutputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LoginCallback">
-      <wsdl:output wsaw:Action="http://tempuri.org/IServer/LoginCallback" message="tns:IServer_LoginCallback_OutputCallbackMessage" />
-    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LoginErrorCallback">
       <wsdl:output wsaw:Action="http://tempuri.org/IServer/LoginErrorCallback" message="tns:IServer_LoginErrorCallback_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateUsersList">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServer/UpdateUsersList" message="tns:IServer_UpdateUsersList_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ChatServiceEndpoint" type="tns:IServer">
@@ -282,17 +282,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="LoginCallback">
-      <soap12:operation soapAction="http://tempuri.org/IServer/LoginCallback" style="document" />
-      <wsdl:output>
-        <wsp:PolicyReference URI="#ChatServiceEndpoint_LoginCallback_output_policy" />
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="LoginErrorCallback">
       <soap12:operation soapAction="http://tempuri.org/IServer/LoginErrorCallback" style="document" />
       <wsdl:output>
         <wsp:PolicyReference URI="#ChatServiceEndpoint_LoginErrorCallback_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUsersList">
+      <soap12:operation soapAction="http://tempuri.org/IServer/UpdateUsersList" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#ChatServiceEndpoint_UpdateUsersList_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

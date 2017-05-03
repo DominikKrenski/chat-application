@@ -68,12 +68,12 @@ namespace Client
             }
         }
 
-        public void LoginCallback(string[] users)
+        public void LoginErrorCallback(string message)
         {
             return;
         }
 
-        public void LoginErrorCallback(string message)
+        public void UpdateUsersList(string[] users)
         {
             return;
         }

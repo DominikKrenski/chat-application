@@ -13,9 +13,9 @@ namespace Service.Interfaces
         void RegisterNotify(string message);
 
         [OperationContract(IsOneWay = true)]
-        void LoginCallback(IList<string> users);
+        void LoginErrorCallback(string message);
 
         [OperationContract(IsOneWay = true)]
-        void LoginErrorCallback(string message);
+        void UpdateUsersList(IList<string> users);
     }
 }

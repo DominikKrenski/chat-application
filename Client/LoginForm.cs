@@ -18,16 +18,6 @@ namespace Client
             InitializeComponent();
         }
 
-        public void LoginCallback(string[] users)
-        {
-            MainForm form = (MainForm) Application.OpenForms[0];
-
-            foreach (var item in users)
-            {
-                form.ActiveUsersTextBox.Text += $"{item}{Environment.NewLine}";
-            }
-        }
-
         public void LoginErrorCallback(string message)
         {
             DialogResult result;
@@ -38,6 +28,20 @@ namespace Client
         public void RegisterNotify(string message)
         {
             return;
+        }
+
+        public void UpdateUsersList(string[] users)
+        {
+            MainForm form = (MainForm)Application.OpenForms[0];
+
+            form.ActiveUsersTextBox.Text = "";
+
+            foreach (var item in users)
+            {
+                form.ActiveUsersTextBox.Text += $"{item}{Environment.NewLine}";
+            }
+
+            this.Close();
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
@@ -52,6 +56,8 @@ namespace Client
             };
 
             client.Login(user);
+
+            this.Close();
         }
     }
 }

@@ -33,22 +33,25 @@ namespace Service.Implementations
 
                     if (userExists)
                     {
+                        var context = OperationContext.Current.GetCallbackChannel<IServerCallback>();
+
                         if (_users.ContainsValue(user.Login))
                         {
-                            OperationContext.Current.GetCallbackChannel<IServerCallback>().LoginErrorCallback("User already logged in");
+                            context.LoginErrorCallback("User already logged in");
                         }
                         else
                         {
-                            var connection = OperationContext.Current.GetCallbackChannel<IServerCallback>();
-
-                            _users[connection] = user.Login;
+                            _users[context] = user.Login;
 
                             foreach (var item in _users.Values)
                             {
                                 users.Add(item);
                             }
 
-                            connection.LoginCallback(users);
+                            foreach (var item in _users.Keys)
+                            {
+                                item.UpdateUsersList(users);
+                            }
                         }
                     }
                     else
