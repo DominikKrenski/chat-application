@@ -15,8 +15,12 @@ namespace Service.Implementations
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single, InstanceContextMode = InstanceContextMode.Single)]
     public class Server : IServer
     {
+        // SŁOWNIK ZAWIERAJĄCY PAWY POŁĄCZENIE <-> LOGIN
+        private Dictionary<IServerCallback, string> _users = new Dictionary<IServerCallback, string>();
+
         public void Login(LoginUser user)
         {
+            // LISTA ZAWIERAJĄCA SPIS AKTUALNIE ZALOGOWANYCH UŻYTKOWNIKÓW
             IList<string> users = new List<string>();
 
             Console.WriteLine($"Żądanie logowania użytkownika: {user.Login} {user.Password}");
@@ -29,7 +33,23 @@ namespace Service.Implementations
 
                     if (userExists)
                     {
-                        OperationContext.Current.GetCallbackChannel<IServerCallback>().LoginCallback(users);
+                        if (_users.ContainsValue(user.Login))
+                        {
+                            OperationContext.Current.GetCallbackChannel<IServerCallback>().LoginErrorCallback("User already logged in");
+                        }
+                        else
+                        {
+                            var connection = OperationContext.Current.GetCallbackChannel<IServerCallback>();
+
+                            _users[connection] = user.Login;
+
+                            foreach (var item in _users.Values)
+                            {
+                                users.Add(item);
+                            }
+
+                            connection.LoginCallback(users);
+                        }
                     }
                     else
                     {
@@ -40,7 +60,6 @@ namespace Service.Implementations
                 {
                     OperationContext.Current.GetCallbackChannel<IServerCallback>().LoginErrorCallback(ex.Message);
                 }
-
             }
         }
 

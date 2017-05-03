@@ -117,7 +117,6 @@
             this.ActiveUsersTextBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ActiveUsersTextBox.Location = new System.Drawing.Point(16, 44);
             this.ActiveUsersTextBox.Name = "ActiveUsersTextBox";
-            this.ActiveUsersTextBox.ReadOnly = true;
             this.ActiveUsersTextBox.Size = new System.Drawing.Size(173, 421);
             this.ActiveUsersTextBox.TabIndex = 2;
             this.ActiveUsersTextBox.Text = "";
@@ -230,9 +229,9 @@
         private System.Windows.Forms.ToolStripMenuItem AboutMenu;
         private System.Windows.Forms.ToolStripMenuItem AuthorsMenuItem;
         private System.Windows.Forms.Label CurrentUsersLabel;
-        private System.Windows.Forms.RichTextBox ActiveUsersTextBox;
+        public System.Windows.Forms.RichTextBox ActiveUsersTextBox;
         private System.Windows.Forms.Label PublicChatLabel;
-        private System.Windows.Forms.RichTextBox PublicChatTextBox;
+        public System.Windows.Forms.RichTextBox PublicChatTextBox;
         private System.Windows.Forms.Label PublicMessageLabel;
         private System.Windows.Forms.RichTextBox PublicMessageTextBox;
         private System.Windows.Forms.Button FontButton;

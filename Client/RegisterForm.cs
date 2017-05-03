@@ -70,12 +70,12 @@ namespace Client
 
         public void LoginCallback(string[] users)
         {
-            throw new NotImplementedException();
+            return;
         }
 
         public void LoginErrorCallback(string message)
         {
-            throw new NotImplementedException();
+            return;
         }
     }
 }

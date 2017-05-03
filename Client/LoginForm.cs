@@ -20,7 +20,12 @@ namespace Client
 
         public void LoginCallback(string[] users)
         {
-            throw new NotImplementedException();
+            MainForm form = (MainForm) Application.OpenForms[0];
+
+            foreach (var item in users)
+            {
+                form.ActiveUsersTextBox.Text += $"{item}{Environment.NewLine}";
+            }
         }
 
         public void LoginErrorCallback(string message)
@@ -32,7 +37,7 @@ namespace Client
 
         public void RegisterNotify(string message)
         {
-            throw new NotImplementedException();
+            return;
         }
 
         private void LoginButton_Click(object sender, EventArgs e)

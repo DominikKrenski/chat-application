@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Client
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, Proxy.IServerCallback
     {
         public MainForm()
         {
@@ -32,6 +32,21 @@ namespace Client
         private void MainForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        public void RegisterNotify(string message)
+        {
+            return;
+        }
+
+        public void LoginCallback(string[] users)
+        {
+            return;
+        }
+
+        public void LoginErrorCallback(string message)
+        {
+            return;
         }
     }
 }
