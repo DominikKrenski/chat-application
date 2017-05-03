@@ -31,8 +31,7 @@ namespace Client
 
         private void RegisterButton_Click(object sender, EventArgs e)
         {
-            InstanceContext context = new InstanceContext(this);
-            Proxy.ServerClient client = new Proxy.ServerClient(context);
+            MainForm form = (MainForm)Application.OpenForms[0];
 
             int age;
 
@@ -51,21 +50,12 @@ namespace Client
                 Age = age
             };
 
-            client.Register(user);
+            form.Client.Register(user);
         }
 
         public void RegisterNotify(string message)
         {
-            DialogResult result;
-
-            if (message.Equals("OK"))
-            {
-                result = MessageBox.Show("User registered successfuly", "Registration completed", MessageBoxButtons.OK);
-            }
-            else
-            {
-                result = MessageBox.Show($"{message}", "Registration Error", MessageBoxButtons.OK);
-            }
+            return;
         }
 
         public void LoginErrorCallback(string message)

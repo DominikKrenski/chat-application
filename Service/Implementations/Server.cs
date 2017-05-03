@@ -15,7 +15,7 @@ namespace Service.Implementations
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single, InstanceContextMode = InstanceContextMode.Single)]
     public class Server : IServer
     {
-        // SŁOWNIK ZAWIERAJĄCY PAWY POŁĄCZENIE <-> LOGIN
+        // SŁOWNIK ZAWIERAJĄCY PARY POŁĄCZENIE <-> LOGIN
         private Dictionary<IServerCallback, string> _users = new Dictionary<IServerCallback, string>();
 
         public void Login(LoginUser user)
@@ -37,21 +37,31 @@ namespace Service.Implementations
 
                         if (_users.ContainsValue(user.Login))
                         {
+                            Console.WriteLine("User already logged in");
                             context.LoginErrorCallback("User already logged in");
                         }
                         else
                         {
-                            _users[context] = user.Login;
-
-                            foreach (var item in _users.Values)
+                            if (_users.ContainsKey(context))
                             {
-                                users.Add(item);
+                                Console.WriteLine("There is one logged user from the same application instance already");
+                                context.LoginErrorCallback("There is one logged user from the same application instance already");
                             }
-
-                            foreach (var item in _users.Keys)
+                            else
                             {
-                                item.UpdateUsersList(users);
+                                _users[context] = user.Login;
+
+                                foreach (var item in _users.Values)
+                                {
+                                    users.Add(item);
+                                }
+
+                                foreach (var item in _users.Keys)
+                                {
+                                    item.UpdateUsersList(users);
+                                }
                             }
+                            
                         }
                     }
                     else

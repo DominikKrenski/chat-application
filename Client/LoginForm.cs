@@ -20,9 +20,7 @@ namespace Client
 
         public void LoginErrorCallback(string message)
         {
-            DialogResult result;
-
-            result = MessageBox.Show(message, "LOGIN ERROR", MessageBoxButtons.OK);
+            return;
         }
 
         public void RegisterNotify(string message)
@@ -32,22 +30,12 @@ namespace Client
 
         public void UpdateUsersList(string[] users)
         {
-            MainForm form = (MainForm)Application.OpenForms[0];
-
-            form.ActiveUsersTextBox.Text = "";
-
-            foreach (var item in users)
-            {
-                form.ActiveUsersTextBox.Text += $"{item}{Environment.NewLine}";
-            }
-
-            this.Close();
+            return;
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            InstanceContext context = new InstanceContext(this);
-            Proxy.ServerClient client = new Proxy.ServerClient(context);
+            MainForm form = (MainForm)Application.OpenForms[0];
 
             Proxy.LoginUser user = new Proxy.LoginUser
             {
@@ -55,7 +43,7 @@ namespace Client
                 Password = PasswordTextBox.Text
             };
 
-            client.Login(user);
+            form.Client.Login(user);
 
             this.Close();
         }
