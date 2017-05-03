@@ -12,4 +12,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="RegisterUser" nillable="true" type="tns:RegisterUser" />
+  <xs:complexType name="LoginUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginUser" nillable="true" type="tns:LoginUser" />
 </xs:schema>

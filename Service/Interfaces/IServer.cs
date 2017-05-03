@@ -13,5 +13,8 @@ namespace Service.Interfaces
     {
         [OperationContract(IsOneWay = true)]
         void Register(RegisterUser user);
+
+        [OperationContract(IsOneWay = true)]
+        void Login(LoginUser user);
     }
 }

@@ -22,5 +22,16 @@ namespace Client
             RegisterForm registerForm = new RegisterForm();
             registerForm.Show();
         }
+
+        private void LoginMenuItem_Click(object sender, EventArgs e)
+        {
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

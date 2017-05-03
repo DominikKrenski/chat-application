@@ -72,20 +72,21 @@
             // LoginMenuItem
             // 
             this.LoginMenuItem.Name = "LoginMenuItem";
-            this.LoginMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.LoginMenuItem.Size = new System.Drawing.Size(116, 22);
             this.LoginMenuItem.Text = "Login";
+            this.LoginMenuItem.Click += new System.EventHandler(this.LoginMenuItem_Click);
             // 
             // RegisterMenuItem
             // 
             this.RegisterMenuItem.Name = "RegisterMenuItem";
-            this.RegisterMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.RegisterMenuItem.Size = new System.Drawing.Size(116, 22);
             this.RegisterMenuItem.Text = "Register";
             this.RegisterMenuItem.Click += new System.EventHandler(this.RegisterMenuItem_Click);
             // 
             // ExitMenuItem
             // 
             this.ExitMenuItem.Name = "ExitMenuItem";
-            this.ExitMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ExitMenuItem.Size = new System.Drawing.Size(116, 22);
             this.ExitMenuItem.Text = "Exit";
             // 
             // AboutMenu
@@ -211,6 +212,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Chat Application";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

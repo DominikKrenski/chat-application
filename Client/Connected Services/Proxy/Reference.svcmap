@@ -22,10 +22,11 @@
     <MetadataSource Address="http://localhost:9000/?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="24826128-9ec2-48b1-b782-8ae0d7f1e8a2" SourceId="1" SourceUrl="http://localhost:9000/?xsd=xsd1" />
     <MetadataFile FileName="Server.wsdl" MetadataType="Wsdl" ID="1417f326-d055-4ff1-ae3f-7ae1da4042d5" SourceId="1" SourceUrl="http://localhost:9000/?wsdl" />
     <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="7c7805a2-479a-4899-b112-ac1f1fd05350" SourceId="1" SourceUrl="http://localhost:9000/?xsd=xsd2" />
+    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="9d6f6d26-51d1-4b29-998b-d702418188a0" SourceId="1" SourceUrl="http://localhost:9000/?xsd=xsd3" />
     <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="c1bc0f03-7a8e-44e5-a55a-4910a42ede56" SourceId="1" SourceUrl="http://localhost:9000/?xsd=xsd0" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="24826128-9ec2-48b1-b782-8ae0d7f1e8a2" SourceId="1" SourceUrl="http://localhost:9000/?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

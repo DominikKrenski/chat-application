@@ -67,5 +67,15 @@ namespace Client
                 result = MessageBox.Show($"{message}", "Registration Error", MessageBoxButtons.OK);
             }
         }
+
+        public void LoginCallback(string[] users)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LoginErrorCallback(string message)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -15,9 +15,38 @@ namespace Service.Implementations
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single, InstanceContextMode = InstanceContextMode.Single)]
     public class Server : IServer
     {
+        public void Login(LoginUser user)
+        {
+            IList<string> users = new List<string>();
+
+            Console.WriteLine($"Żądanie logowania użytkownika: {user.Login} {user.Password}");
+
+            using (var db = new ServiceDbContext())
+            {
+                try
+                {
+                    bool userExists = (from entity in db.Users where entity.Login == user.Login && entity.Password == user.Password select entity).Any();
+
+                    if (userExists)
+                    {
+                        OperationContext.Current.GetCallbackChannel<IServerCallback>().LoginCallback(users);
+                    }
+                    else
+                    {
+                        OperationContext.Current.GetCallbackChannel<IServerCallback>().LoginErrorCallback("Login or password incorrect");
+                    }
+                }
+                catch(Exception ex)
+                {
+                    OperationContext.Current.GetCallbackChannel<IServerCallback>().LoginErrorCallback(ex.Message);
+                }
+
+            }
+        }
+
         public void Register(RegisterUser user)
         {
-            Console.WriteLine($"Żądanie rejestracji nowego użytkownika: {user.Login} {user.Password} {user.PasswordConfirm}" +
+            Console.WriteLine($"Żądanie rejestracji nowego użytkownika: {user.Login} {user.Password} {user.PasswordConfirm} " +
                 $"{user.Name} {user.Surname} {user.Sex} {user.Age}");
 
             User dbUser = new User
