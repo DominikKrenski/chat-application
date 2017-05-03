@@ -230,6 +230,18 @@ namespace Client.Proxy {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/Login")]
         System.Threading.Tasks.Task LoginAsync(Client.Proxy.LoginUser user);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/SendPublicMessage")]
+        void SendPublicMessage(string message);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/SendPublicMessage")]
+        System.Threading.Tasks.Task SendPublicMessageAsync(string message);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/SendPrivateMessage")]
+        void SendPrivateMessage(string login, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/SendPrivateMessage")]
+        System.Threading.Tasks.Task SendPrivateMessageAsync(string login, string message);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -243,6 +255,12 @@ namespace Client.Proxy {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/UpdateUsersList")]
         void UpdateUsersList(string[] users);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/UpdatePublicChatTextBox")]
+        void UpdatePublicChatTextBox(string login, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/DisplayReceivePrivateMessageForm")]
+        void DisplayReceivePrivateMessageForm(string login, string message);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -287,6 +305,22 @@ namespace Client.Proxy {
         
         public System.Threading.Tasks.Task LoginAsync(Client.Proxy.LoginUser user) {
             return base.Channel.LoginAsync(user);
+        }
+        
+        public void SendPublicMessage(string message) {
+            base.Channel.SendPublicMessage(message);
+        }
+        
+        public System.Threading.Tasks.Task SendPublicMessageAsync(string message) {
+            return base.Channel.SendPublicMessageAsync(message);
+        }
+        
+        public void SendPrivateMessage(string login, string message) {
+            base.Channel.SendPrivateMessage(login, message);
+        }
+        
+        public System.Threading.Tasks.Task SendPrivateMessageAsync(string login, string message) {
+            return base.Channel.SendPrivateMessageAsync(login, message);
         }
     }
 }

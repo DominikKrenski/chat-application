@@ -67,5 +67,15 @@ namespace Client
         {
             return;
         }
+
+        public void UpdatePublicChatTextBox(string login, string message)
+        {
+            return;
+        }
+
+        public void DisplayReceivePrivateMessageForm(string login, string message)
+        {
+            return;
+        }
     }
 }

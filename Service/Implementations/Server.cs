@@ -35,6 +35,7 @@ namespace Service.Implementations
                     {
                         var context = OperationContext.Current.GetCallbackChannel<IServerCallback>();
 
+                        // SPRAWDZENIE CZY UŻYTKOWNIK JEST JUŻ ZALOGOWANY
                         if (_users.ContainsValue(user.Login))
                         {
                             Console.WriteLine("User already logged in");
@@ -42,11 +43,13 @@ namespace Service.Implementations
                         }
                         else
                         {
+                            // SPRAWDZENIE CZY W DANEJ INSTANCJI APLIKACJI UŻYTKOWNIK ZOSTAŁ JUŻ ZALOGOWANY
                             if (_users.ContainsKey(context))
                             {
                                 Console.WriteLine("There is one logged user from the same application instance already");
                                 context.LoginErrorCallback("There is one logged user from the same application instance already");
                             }
+                            // JEśLI NIE, WÓWCZAS MOŻLIWE JEST LOGOWANIE
                             else
                             {
                                 _users[context] = user.Login;
@@ -140,6 +143,33 @@ namespace Service.Implementations
                 }
             }
 
+        }
+
+        public void SendPublicMessage(string message)
+        {
+            Console.WriteLine($"Publiczna wiadomość: {message}");
+            var context = OperationContext.Current.GetCallbackChannel<IServerCallback>();
+
+            foreach (var item in _users.Keys)
+            {
+                if (item != context)
+                {
+                    item.UpdatePublicChatTextBox(_users[context], message);
+                }
+            }
+        }
+
+        public void SendPrivateMessage(string login, string message)
+        {
+            var context = OperationContext.Current.GetCallbackChannel<IServerCallback>();
+
+            Console.WriteLine($"Prywatna wiadomość: Do: {login} Wiadomość: {message}");
+
+            foreach (var key in _users.Keys)
+            {
+                if (_users[key].Equals(login))
+                    key.DisplayReceivePrivateMessageForm(_users[context], message);
+            }
         }
     }
 }

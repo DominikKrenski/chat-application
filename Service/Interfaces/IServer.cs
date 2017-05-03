@@ -16,5 +16,11 @@ namespace Service.Interfaces
 
         [OperationContract(IsOneWay = true)]
         void Login(LoginUser user);
+
+        [OperationContract(IsOneWay = true)]
+        void SendPublicMessage(string message);
+
+        [OperationContract(IsOneWay = true)]
+        void SendPrivateMessage(string login, string message);
     }
 }

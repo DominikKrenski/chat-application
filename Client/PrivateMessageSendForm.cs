@@ -4,16 +4,15 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Client
 {
-    public partial class LoginForm : Form, Proxy.IServerCallback
+    public partial class PrivateMessageSendForm : Form, Proxy.IServerCallback
     {
-        public LoginForm()
+        public PrivateMessageSendForm()
         {
             InitializeComponent();
         }
@@ -43,19 +42,19 @@ namespace Client
             return;
         }
 
-        private void LoginButton_Click(object sender, EventArgs e)
+        private void PrivateMessageSendForm_Load(object sender, EventArgs e)
         {
-            MainForm form = (MainForm)Application.OpenForms[0];
 
-            Proxy.LoginUser user = new Proxy.LoginUser
-            {
-                Login = LoginTextBox.Text,
-                Password = PasswordTextBox.Text
-            };
+        }
 
-            form.Client.Login(user);
+        private void SendPrivateMessageButton_Click(object sender, EventArgs e)
+        {
+            MainForm form = (MainForm) Application.OpenForms[0];
 
-            this.Close();
+            string login = PrivateLoginTextBox.Text;
+            string message = PrivateMessageTextBox.Text;
+
+            form.Client.SendPrivateMessage(login, message);
         }
     }
 }

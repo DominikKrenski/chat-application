@@ -71,5 +71,35 @@ namespace Client
                 ActiveUsersTextBox.Text += $"{item}{Environment.NewLine}";
             }
         }
+
+        public void UpdatePublicChatTextBox(string login, string message)
+        {
+            PublicChatTextBox.Text += $"{login}: {message}{Environment.NewLine}";
+        }
+
+        private void PublicMessageButton_Click(object sender, EventArgs e)
+        {
+            string text = PublicMessageTextBox.Text;
+            PublicMessageTextBox.Text = "";
+
+            Client.SendPublicMessage(text);
+        }
+
+        private void PrivateMessageButton_Click(object sender, EventArgs e)
+        {
+            PrivateMessageSendForm sendForm = new PrivateMessageSendForm();
+            sendForm.Show();
+        }
+
+        public void DisplayReceivePrivateMessageForm(string login, string message)
+        {
+            PrivateMessageReceiveForm form = new PrivateMessageReceiveForm();
+
+            form.SenderTextBox.Text = login;
+            form.PrivateMessageTextBox.Text = message;
+
+            form.Show();
+    
+        }
     }
 }

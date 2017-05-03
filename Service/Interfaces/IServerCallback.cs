@@ -17,5 +17,11 @@ namespace Service.Interfaces
 
         [OperationContract(IsOneWay = true)]
         void UpdateUsersList(IList<string> users);
+
+        [OperationContract(IsOneWay = true)]
+        void UpdatePublicChatTextBox(string login, string message);
+
+        [OperationContract(IsOneWay = true)]
+        void DisplayReceivePrivateMessageForm(string login, string message);
     }
 }

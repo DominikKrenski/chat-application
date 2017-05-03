@@ -182,6 +182,7 @@
             this.PublicMessageButton.TabIndex = 9;
             this.PublicMessageButton.Text = "Send Message";
             this.PublicMessageButton.UseVisualStyleBackColor = true;
+            this.PublicMessageButton.Click += new System.EventHandler(this.PublicMessageButton_Click);
             // 
             // PrivateMessageButton
             // 
@@ -191,6 +192,7 @@
             this.PrivateMessageButton.TabIndex = 10;
             this.PrivateMessageButton.Text = "Private Message";
             this.PrivateMessageButton.UseVisualStyleBackColor = true;
+            this.PrivateMessageButton.Click += new System.EventHandler(this.PrivateMessageButton_Click);
             // 
             // MainForm
             // 
