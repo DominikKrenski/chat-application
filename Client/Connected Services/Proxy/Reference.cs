@@ -231,6 +231,12 @@ namespace Client.Proxy {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/Login")]
         System.Threading.Tasks.Task LoginAsync(Client.Proxy.LoginUser user);
         
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/Logout")]
+        void Logout();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/Logout")]
+        System.Threading.Tasks.Task LogoutAsync();
+        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/SendPublicMessage")]
         void SendPublicMessage(string message);
         
@@ -261,6 +267,12 @@ namespace Client.Proxy {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/DisplayReceivePrivateMessageForm")]
         void DisplayReceivePrivateMessageForm(string login, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/UpdateLogoutUsersList")]
+        void UpdateLogoutUsersList();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/UpdateLoginPublicChatTextBox")]
+        void UpdateLoginPublicChatTextBox();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -305,6 +317,14 @@ namespace Client.Proxy {
         
         public System.Threading.Tasks.Task LoginAsync(Client.Proxy.LoginUser user) {
             return base.Channel.LoginAsync(user);
+        }
+        
+        public void Logout() {
+            base.Channel.Logout();
+        }
+        
+        public System.Threading.Tasks.Task LogoutAsync() {
+            return base.Channel.LogoutAsync();
         }
         
         public void SendPublicMessage(string message) {

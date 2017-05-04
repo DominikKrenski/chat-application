@@ -23,5 +23,11 @@ namespace Service.Interfaces
 
         [OperationContract(IsOneWay = true)]
         void DisplayReceivePrivateMessageForm(string login, string message);
+
+        [OperationContract(IsOneWay = true)]
+        void UpdateLogoutUsersList();
+
+        [OperationContract(IsOneWay = true)]
+        void UpdateLoginPublicChatTextBox();
     }
 }

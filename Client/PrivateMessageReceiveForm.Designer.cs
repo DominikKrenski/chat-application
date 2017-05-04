@@ -77,6 +77,7 @@
             this.ResponseButton.TabIndex = 4;
             this.ResponseButton.Text = "Response";
             this.ResponseButton.UseVisualStyleBackColor = true;
+            this.ResponseButton.Click += new System.EventHandler(this.ResponseButton_Click);
             // 
             // CloseButton
             // 

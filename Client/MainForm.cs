@@ -101,5 +101,20 @@ namespace Client
             form.Show();
     
         }
+
+        public void UpdateLogoutUsersList()
+        {
+            ActiveUsersTextBox.Text = "";
+        }
+
+        public void UpdateLoginPublicChatTextBox()
+        {
+            PublicChatTextBox.Text = "";
+        }
+
+        private void LogoutMenuItem_Click(object sender, EventArgs e)
+        {
+            Client.Logout();
+        }
     }
 }

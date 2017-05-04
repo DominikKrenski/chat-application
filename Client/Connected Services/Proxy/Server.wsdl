@@ -149,6 +149,29 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="ChatServiceEndpoint_Logout_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="ChatServiceEndpoint_SendPublicMessage_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -310,6 +333,52 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="ChatServiceEndpoint_UpdateLogoutUsersList_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="ChatServiceEndpoint_UpdateLoginPublicChatTextBox_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:9000/?xsd=xsd0" namespace="http://tempuri.org/" />
@@ -323,6 +392,9 @@
   </wsdl:message>
   <wsdl:message name="IServer_Login_InputMessage">
     <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IServer_Logout_InputMessage">
+    <wsdl:part name="parameters" element="tns:Logout" />
   </wsdl:message>
   <wsdl:message name="IServer_SendPublicMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:SendPublicMessage" />
@@ -345,12 +417,21 @@
   <wsdl:message name="IServer_DisplayReceivePrivateMessageForm_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:DisplayReceivePrivateMessageForm" />
   </wsdl:message>
+  <wsdl:message name="IServer_UpdateLogoutUsersList_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLogoutUsersList" />
+  </wsdl:message>
+  <wsdl:message name="IServer_UpdateLoginPublicChatTextBox_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLoginPublicChatTextBox" />
+  </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IServer">
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Register">
       <wsdl:input wsaw:Action="http://tempuri.org/IServer/Register" message="tns:IServer_Register_InputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Login">
       <wsdl:input wsaw:Action="http://tempuri.org/IServer/Login" message="tns:IServer_Login_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Logout">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServer/Logout" message="tns:IServer_Logout_InputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SendPublicMessage">
       <wsdl:input wsaw:Action="http://tempuri.org/IServer/SendPublicMessage" message="tns:IServer_SendPublicMessage_InputMessage" />
@@ -373,6 +454,12 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DisplayReceivePrivateMessageForm">
       <wsdl:output wsaw:Action="http://tempuri.org/IServer/DisplayReceivePrivateMessageForm" message="tns:IServer_DisplayReceivePrivateMessageForm_OutputCallbackMessage" />
     </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateLogoutUsersList">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServer/UpdateLogoutUsersList" message="tns:IServer_UpdateLogoutUsersList_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateLoginPublicChatTextBox">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServer/UpdateLoginPublicChatTextBox" message="tns:IServer_UpdateLoginPublicChatTextBox_OutputCallbackMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ChatServiceEndpoint" type="tns:IServer">
     <wsp:PolicyReference URI="#ChatServiceEndpoint_policy" />
@@ -388,6 +475,13 @@
       <soap12:operation soapAction="http://tempuri.org/IServer/Login" style="document" />
       <wsdl:input>
         <wsp:PolicyReference URI="#ChatServiceEndpoint_Login_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <soap12:operation soapAction="http://tempuri.org/IServer/Logout" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#ChatServiceEndpoint_Logout_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
@@ -437,6 +531,20 @@
       <soap12:operation soapAction="http://tempuri.org/IServer/DisplayReceivePrivateMessageForm" style="document" />
       <wsdl:output>
         <wsp:PolicyReference URI="#ChatServiceEndpoint_DisplayReceivePrivateMessageForm_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLogoutUsersList">
+      <soap12:operation soapAction="http://tempuri.org/IServer/UpdateLogoutUsersList" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#ChatServiceEndpoint_UpdateLogoutUsersList_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLoginPublicChatTextBox">
+      <soap12:operation soapAction="http://tempuri.org/IServer/UpdateLoginPublicChatTextBox" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#ChatServiceEndpoint_UpdateLoginPublicChatTextBox_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

@@ -152,10 +152,7 @@ namespace Service.Implementations
 
             foreach (var item in _users.Keys)
             {
-                if (item != context)
-                {
-                    item.UpdatePublicChatTextBox(_users[context], message);
-                }
+                item.UpdatePublicChatTextBox(_users[context], message);
             }
         }
 
@@ -169,6 +166,40 @@ namespace Service.Implementations
             {
                 if (_users[key].Equals(login))
                     key.DisplayReceivePrivateMessageForm(_users[context], message);
+            }
+        }
+
+        public void Logout()
+        {
+            IList<string> users = new List<string>();
+
+            var context = OperationContext.Current.GetCallbackChannel<IServerCallback>();
+
+            Console.WriteLine($"Żądanie wylogowania użytkownika: {_users[context]}");
+
+            // Wyczyszczenie listy zalogowanych użytkowników u klienta, który się wylogował
+            context.UpdateLogoutUsersList();
+
+            // Wyczyszczenie okna rozmowy publicznej
+            context.UpdateLoginPublicChatTextBox();
+
+            // Przypisanie nazwy użytkownika, który aktualnie się wylogowuje
+            var login = _users[context];
+
+            // Usunięcie elementu z listy zarejestrowanych użytkowników
+            _users.Remove(context);
+
+            // Zaktualizowanie listy obecnie zalogowanych użytkowników u pozostałych podłączonych klientów
+
+            foreach (var key in _users.Keys)
+            {
+                users.Add(_users[key]);
+            }
+
+            foreach (var item in _users.Keys)
+            {
+                item.UpdateUsersList(users);
+                item.UpdatePublicChatTextBox(login, $"LOGGED OUT AT {DateTime.Now.ToString()}");
             }
         }
     }

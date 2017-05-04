@@ -18,6 +18,9 @@ namespace Service.Interfaces
         void Login(LoginUser user);
 
         [OperationContract(IsOneWay = true)]
+        void Logout();
+
+        [OperationContract(IsOneWay = true)]
         void SendPublicMessage(string message);
 
         [OperationContract(IsOneWay = true)]

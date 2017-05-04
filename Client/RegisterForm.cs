@@ -77,5 +77,15 @@ namespace Client
         {
             return;
         }
+
+        public void UpdateLogoutUsersList()
+        {
+            return;
+        }
+
+        public void UpdateLoginPublicChatTextBox()
+        {
+            return;
+        }
     }
 }

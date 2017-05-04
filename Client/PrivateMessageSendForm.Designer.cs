@@ -99,7 +99,7 @@
         #endregion
 
         private System.Windows.Forms.Label ReceiverLabel;
-        private System.Windows.Forms.TextBox PrivateLoginTextBox;
+        public System.Windows.Forms.TextBox PrivateLoginTextBox;
         private System.Windows.Forms.Label PrivateMessageLabel;
         private System.Windows.Forms.RichTextBox PrivateMessageTextBox;
         private System.Windows.Forms.Button SendPrivateMessageButton;

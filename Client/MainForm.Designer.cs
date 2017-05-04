@@ -45,6 +45,7 @@
             this.ColorButton = new System.Windows.Forms.Button();
             this.PublicMessageButton = new System.Windows.Forms.Button();
             this.PrivateMessageButton = new System.Windows.Forms.Button();
+            this.LogoutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,7 +65,8 @@
             this.FileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.LoginMenuItem,
             this.RegisterMenuItem,
-            this.ExitMenuItem});
+            this.ExitMenuItem,
+            this.LogoutMenuItem});
             this.FileMenu.Name = "FileMenu";
             this.FileMenu.Size = new System.Drawing.Size(37, 20);
             this.FileMenu.Text = "File";
@@ -72,21 +74,21 @@
             // LoginMenuItem
             // 
             this.LoginMenuItem.Name = "LoginMenuItem";
-            this.LoginMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.LoginMenuItem.Size = new System.Drawing.Size(152, 22);
             this.LoginMenuItem.Text = "Login";
             this.LoginMenuItem.Click += new System.EventHandler(this.LoginMenuItem_Click);
             // 
             // RegisterMenuItem
             // 
             this.RegisterMenuItem.Name = "RegisterMenuItem";
-            this.RegisterMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.RegisterMenuItem.Size = new System.Drawing.Size(152, 22);
             this.RegisterMenuItem.Text = "Register";
             this.RegisterMenuItem.Click += new System.EventHandler(this.RegisterMenuItem_Click);
             // 
             // ExitMenuItem
             // 
             this.ExitMenuItem.Name = "ExitMenuItem";
-            this.ExitMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.ExitMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ExitMenuItem.Text = "Exit";
             // 
             // AboutMenu
@@ -194,6 +196,13 @@
             this.PrivateMessageButton.UseVisualStyleBackColor = true;
             this.PrivateMessageButton.Click += new System.EventHandler(this.PrivateMessageButton_Click);
             // 
+            // LogoutMenuItem
+            // 
+            this.LogoutMenuItem.Name = "LogoutMenuItem";
+            this.LogoutMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.LogoutMenuItem.Text = "Logout";
+            this.LogoutMenuItem.Click += new System.EventHandler(this.LogoutMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -240,6 +249,7 @@
         private System.Windows.Forms.Button ColorButton;
         private System.Windows.Forms.Button PublicMessageButton;
         private System.Windows.Forms.Button PrivateMessageButton;
+        private System.Windows.Forms.ToolStripMenuItem LogoutMenuItem;
     }
 }
 

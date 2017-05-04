@@ -32,6 +32,16 @@ namespace Client
             return;
         }
 
+        public void UpdateLoginPublicChatTextBox()
+        {
+            return;
+        }
+
+        public void UpdateLogoutUsersList()
+        {
+            return;
+        }
+
         public void UpdatePublicChatTextBox(string login, string message)
         {
             return;
