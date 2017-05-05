@@ -18,6 +18,9 @@ namespace Service.Implementations
         // SŁOWNIK ZAWIERAJĄCY PARY POŁĄCZENIE <-> LOGIN
         private Dictionary<IServerCallback, string> _users = new Dictionary<IServerCallback, string>();
 
+        // SŁOWNIK ZAWIERAJĄCY PARY POŁĄCZENIE <-> LOGIN DLA UŻYTKOWNIKÓW PROWADZĄCYCH AKTUALNIE ROZMOWY PRYWATNE
+        private Dictionary<IServerCallback, string> _privateUsers = new Dictionary<IServerCallback, string>();
+
         public void Login(LoginUser user)
         {
             // LISTA ZAWIERAJĄCA SPIS AKTUALNIE ZALOGOWANYCH UŻYTKOWNIKÓW
@@ -156,17 +159,55 @@ namespace Service.Implementations
             }
         }
 
-        public void SendPrivateMessage(string login, string message)
+        public void SendPrivateMessage(string sender, string receiver, string message)
         {
+
+            Console.WriteLine($"Nadawca: {sender} Odbiorca: {receiver} Wiadomość: {message}");
             var context = OperationContext.Current.GetCallbackChannel<IServerCallback>();
+
+            // Jeśli użytkownik wysyła pierwszy raz wiadomość prywatną, należy dodać go do słownika
+            if (!_privateUsers.ContainsKey(context))
+            {
+                _privateUsers[context] = sender;
+            }
+
+            // Sprawdzenie, czy odbiorca ma już otwarty kanał, jeśli nie wiadomość zostanie wysłana głownym kanałem
+            if(_privateUsers.ContainsValue(receiver))
+            {
+                Console.WriteLine("Użytkownik ma już otwarty kanał");
+                foreach(var key in _privateUsers.Keys)
+                {
+                    if (_privateUsers[key] == receiver)
+                    {
+                        key.UpdatePrivateChatForm(sender, message);
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Użytkownik nie ma otwartego kanału");
+                
+                // Znalezienie głównego kanału dla odbiorcy
+                foreach(var key in _users.Keys)
+                {
+                    if (_users[key] == receiver)
+                    {
+                        Console.WriteLine("Znaleziono kanał");
+                        key.OpenPrivateChatForm(sender, receiver, message);
+                        break;
+                    }
+                }
+            }
+
+            /*var context = OperationContext.Current.GetCallbackChannel<IServerCallback>();
 
             Console.WriteLine($"Prywatna wiadomość: Do: {login} Wiadomość: {message}");
 
             foreach (var key in _users.Keys)
             {
-                if (_users[key].Equals(login))
-                    key.DisplayReceivePrivateMessageForm(_users[context], message);
-            }
+                if (_users[key].Equals(login)) ;
+                   // key.DisplayReceivePrivateMessageForm(_users[context], message);
+            }*/
         }
 
         public void Logout()

@@ -244,10 +244,10 @@ namespace Client.Proxy {
         System.Threading.Tasks.Task SendPublicMessageAsync(string message);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/SendPrivateMessage")]
-        void SendPrivateMessage(string login, string message);
+        void SendPrivateMessage(string sender, string receiver, string message);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/SendPrivateMessage")]
-        System.Threading.Tasks.Task SendPrivateMessageAsync(string login, string message);
+        System.Threading.Tasks.Task SendPrivateMessageAsync(string sender, string receiver, string message);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -265,14 +265,17 @@ namespace Client.Proxy {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/UpdatePublicChatTextBox")]
         void UpdatePublicChatTextBox(string login, string message);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/DisplayReceivePrivateMessageForm")]
-        void DisplayReceivePrivateMessageForm(string login, string message);
-        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/UpdateLogoutUsersList")]
         void UpdateLogoutUsersList();
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/UpdateLoginPublicChatTextBox")]
         void UpdateLoginPublicChatTextBox();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/OpenPrivateChatForm")]
+        void OpenPrivateChatForm(string sender, string receiver, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/UpdatePrivateChatForm")]
+        void UpdatePrivateChatForm(string sender, string message);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -335,12 +338,12 @@ namespace Client.Proxy {
             return base.Channel.SendPublicMessageAsync(message);
         }
         
-        public void SendPrivateMessage(string login, string message) {
-            base.Channel.SendPrivateMessage(login, message);
+        public void SendPrivateMessage(string sender, string receiver, string message) {
+            base.Channel.SendPrivateMessage(sender, receiver, message);
         }
         
-        public System.Threading.Tasks.Task SendPrivateMessageAsync(string login, string message) {
-            return base.Channel.SendPrivateMessageAsync(login, message);
+        public System.Threading.Tasks.Task SendPrivateMessageAsync(string sender, string receiver, string message) {
+            return base.Channel.SendPrivateMessageAsync(sender, receiver, message);
         }
     }
 }

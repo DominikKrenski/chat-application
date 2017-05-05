@@ -22,12 +22,15 @@ namespace Service.Interfaces
         void UpdatePublicChatTextBox(string login, string message);
 
         [OperationContract(IsOneWay = true)]
-        void DisplayReceivePrivateMessageForm(string login, string message);
-
-        [OperationContract(IsOneWay = true)]
         void UpdateLogoutUsersList();
 
         [OperationContract(IsOneWay = true)]
         void UpdateLoginPublicChatTextBox();
+
+        [OperationContract(IsOneWay = true)]
+        void OpenPrivateChatForm(string sender, string receiver, string message);
+
+        [OperationContract(IsOneWay = true)]
+        void UpdatePrivateChatForm(string sender, string message);
     }
 }

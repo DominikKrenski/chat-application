@@ -18,14 +18,14 @@ namespace Client
             InitializeComponent();
         }
 
-        public void DisplayReceivePrivateMessageForm(string login, string message)
+        public void LoginErrorCallback(string message)
         {
             return;
         }
 
-        public void LoginErrorCallback(string message)
+        public void OpenPrivateChatForm(string sender, string receiver, string message)
         {
-            return;
+            throw new NotImplementedException();
         }
 
         public void RegisterNotify(string message)
@@ -43,6 +43,11 @@ namespace Client
             return;
         }
 
+        public void UpdatePrivateChatForm(string sender, string message)
+        {
+            throw new NotImplementedException();
+        }
+
         public void UpdatePublicChatTextBox(string login, string message)
         {
             return;
@@ -56,6 +61,8 @@ namespace Client
         private void LoginButton_Click(object sender, EventArgs e)
         {
             MainForm form = (MainForm)Application.OpenForms[0];
+
+            form.Login = LoginTextBox.Text;
 
             Proxy.LoginUser user = new Proxy.LoginUser
             {

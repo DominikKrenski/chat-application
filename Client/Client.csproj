@@ -64,17 +64,11 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PrivateMessageReceiveForm.cs">
+    <Compile Include="PrivateChatForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PrivateMessageReceiveForm.Designer.cs">
-      <DependentUpon>PrivateMessageReceiveForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PrivateMessageSendForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PrivateMessageSendForm.Designer.cs">
-      <DependentUpon>PrivateMessageSendForm.cs</DependentUpon>
+    <Compile Include="PrivateChatForm.Designer.cs">
+      <DependentUpon>PrivateChatForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,11 +84,8 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PrivateMessageReceiveForm.resx">
-      <DependentUpon>PrivateMessageReceiveForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PrivateMessageSendForm.resx">
-      <DependentUpon>PrivateMessageSendForm.cs</DependentUpon>
+    <EmbeddedResource Include="PrivateChatForm.resx">
+      <DependentUpon>PrivateChatForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

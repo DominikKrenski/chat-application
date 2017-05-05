@@ -73,11 +73,6 @@ namespace Client
             return;
         }
 
-        public void DisplayReceivePrivateMessageForm(string login, string message)
-        {
-            return;
-        }
-
         public void UpdateLogoutUsersList()
         {
             return;
@@ -86,6 +81,21 @@ namespace Client
         public void UpdateLoginPublicChatTextBox()
         {
             return;
+        }
+
+        public void OpenPrivateChatForm(string sender, string message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdatePrivateChatForm(string sender, string message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OpenPrivateChatForm(string sender, string receiver, string message)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Client
     {
         private InstanceContext Context;
         public Proxy.ServerClient Client;
+        public string Login;
 
         public MainForm()
         {
@@ -64,11 +65,13 @@ namespace Client
 
         public void UpdateUsersList(string[] users)
         {
-            ActiveUsersTextBox.Text = "";
+            //ActiveUsersTextBox.Text = "";
+            ActiveUsersTextBox.Items.Clear();
 
             foreach (var item in users)
             {
-                ActiveUsersTextBox.Text += $"{item}{Environment.NewLine}";
+                //ActiveUsersTextBox.Text += $"{item}{Environment.NewLine}";
+                ActiveUsersTextBox.Items.Add(item);
             }
         }
 
@@ -85,26 +88,10 @@ namespace Client
             Client.SendPublicMessage(text);
         }
 
-        private void PrivateMessageButton_Click(object sender, EventArgs e)
-        {
-            PrivateMessageSendForm sendForm = new PrivateMessageSendForm();
-            sendForm.Show();
-        }
-
-        public void DisplayReceivePrivateMessageForm(string login, string message)
-        {
-            PrivateMessageReceiveForm form = new PrivateMessageReceiveForm();
-
-            form.SenderTextBox.Text = login;
-            form.PrivateMessageTextBox.Text = message;
-
-            form.Show();
-    
-        }
-
         public void UpdateLogoutUsersList()
         {
-            ActiveUsersTextBox.Text = "";
+            //ActiveUsersTextBox.Text = "";
+            ActiveUsersTextBox.Items.Clear();
         }
 
         public void UpdateLoginPublicChatTextBox()
@@ -115,6 +102,42 @@ namespace Client
         private void LogoutMenuItem_Click(object sender, EventArgs e)
         {
             Client.Logout();
+        }
+
+        private void PublicChatTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ActiveUsersTextBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (ActiveUsersTextBox.SelectedItem != null)
+            {
+                PrivateChatForm form = new PrivateChatForm(ActiveUsersTextBox.SelectedItem.ToString());
+                form.Show();
+                ActiveUsersTextBox.ClearSelected();
+            }
+        }
+
+        public void OpenPrivateChatForm(string sender, string message)
+        {
+            Console.WriteLine("Otwieram okno prywatnego czatu");
+            PrivateChatForm form = new PrivateChatForm();
+            form.PrivateChatTextBox.Text += $"{sender}: {message}{Environment.NewLine}";
+            form.Show();
+        }
+
+        public void UpdatePrivateChatForm(string sender, string message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OpenPrivateChatForm(string sender, string receiver, string message)
+        {
+            Console.WriteLine("Otwieram okno prywatnego czatu");
+            PrivateChatForm form = new PrivateChatForm(receiver, sender);
+            form.PrivateChatTextBox.Text += $"{sender}: {message}{Environment.NewLine}";
+            form.Show();
         }
     }
 }

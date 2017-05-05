@@ -33,19 +33,16 @@
             this.LoginMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RegisterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LogoutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.AuthorsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CurrentUsersLabel = new System.Windows.Forms.Label();
-            this.ActiveUsersTextBox = new System.Windows.Forms.RichTextBox();
             this.PublicChatLabel = new System.Windows.Forms.Label();
             this.PublicChatTextBox = new System.Windows.Forms.RichTextBox();
             this.PublicMessageLabel = new System.Windows.Forms.Label();
             this.PublicMessageTextBox = new System.Windows.Forms.RichTextBox();
-            this.FontButton = new System.Windows.Forms.Button();
-            this.ColorButton = new System.Windows.Forms.Button();
             this.PublicMessageButton = new System.Windows.Forms.Button();
-            this.PrivateMessageButton = new System.Windows.Forms.Button();
-            this.LogoutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ActiveUsersTextBox = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,22 +71,29 @@
             // LoginMenuItem
             // 
             this.LoginMenuItem.Name = "LoginMenuItem";
-            this.LoginMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.LoginMenuItem.Size = new System.Drawing.Size(116, 22);
             this.LoginMenuItem.Text = "Login";
             this.LoginMenuItem.Click += new System.EventHandler(this.LoginMenuItem_Click);
             // 
             // RegisterMenuItem
             // 
             this.RegisterMenuItem.Name = "RegisterMenuItem";
-            this.RegisterMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.RegisterMenuItem.Size = new System.Drawing.Size(116, 22);
             this.RegisterMenuItem.Text = "Register";
             this.RegisterMenuItem.Click += new System.EventHandler(this.RegisterMenuItem_Click);
             // 
             // ExitMenuItem
             // 
             this.ExitMenuItem.Name = "ExitMenuItem";
-            this.ExitMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ExitMenuItem.Size = new System.Drawing.Size(116, 22);
             this.ExitMenuItem.Text = "Exit";
+            // 
+            // LogoutMenuItem
+            // 
+            this.LogoutMenuItem.Name = "LogoutMenuItem";
+            this.LogoutMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.LogoutMenuItem.Text = "Logout";
+            this.LogoutMenuItem.Click += new System.EventHandler(this.LogoutMenuItem_Click);
             // 
             // AboutMenu
             // 
@@ -114,15 +118,6 @@
             this.CurrentUsersLabel.TabIndex = 1;
             this.CurrentUsersLabel.Text = "Active Users";
             // 
-            // ActiveUsersTextBox
-            // 
-            this.ActiveUsersTextBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ActiveUsersTextBox.Location = new System.Drawing.Point(16, 44);
-            this.ActiveUsersTextBox.Name = "ActiveUsersTextBox";
-            this.ActiveUsersTextBox.Size = new System.Drawing.Size(173, 421);
-            this.ActiveUsersTextBox.TabIndex = 2;
-            this.ActiveUsersTextBox.Text = "";
-            // 
             // PublicChatLabel
             // 
             this.PublicChatLabel.AutoSize = true;
@@ -140,6 +135,7 @@
             this.PublicChatTextBox.Size = new System.Drawing.Size(429, 421);
             this.PublicChatTextBox.TabIndex = 4;
             this.PublicChatTextBox.Text = "";
+            this.PublicChatTextBox.TextChanged += new System.EventHandler(this.PublicChatTextBox_TextChanged);
             // 
             // PublicMessageLabel
             // 
@@ -158,27 +154,9 @@
             this.PublicMessageTextBox.TabIndex = 6;
             this.PublicMessageTextBox.Text = "";
             // 
-            // FontButton
-            // 
-            this.FontButton.Location = new System.Drawing.Point(435, 496);
-            this.FontButton.Name = "FontButton";
-            this.FontButton.Size = new System.Drawing.Size(98, 23);
-            this.FontButton.TabIndex = 7;
-            this.FontButton.Text = "Font";
-            this.FontButton.UseVisualStyleBackColor = true;
-            // 
-            // ColorButton
-            // 
-            this.ColorButton.Location = new System.Drawing.Point(569, 496);
-            this.ColorButton.Name = "ColorButton";
-            this.ColorButton.Size = new System.Drawing.Size(105, 23);
-            this.ColorButton.TabIndex = 8;
-            this.ColorButton.Text = "Color";
-            this.ColorButton.UseVisualStyleBackColor = true;
-            // 
             // PublicMessageButton
             // 
-            this.PublicMessageButton.Location = new System.Drawing.Point(435, 535);
+            this.PublicMessageButton.Location = new System.Drawing.Point(502, 518);
             this.PublicMessageButton.Name = "PublicMessageButton";
             this.PublicMessageButton.Size = new System.Drawing.Size(98, 23);
             this.PublicMessageButton.TabIndex = 9;
@@ -186,37 +164,26 @@
             this.PublicMessageButton.UseVisualStyleBackColor = true;
             this.PublicMessageButton.Click += new System.EventHandler(this.PublicMessageButton_Click);
             // 
-            // PrivateMessageButton
+            // ActiveUsersTextBox
             // 
-            this.PrivateMessageButton.Location = new System.Drawing.Point(569, 535);
-            this.PrivateMessageButton.Name = "PrivateMessageButton";
-            this.PrivateMessageButton.Size = new System.Drawing.Size(105, 23);
-            this.PrivateMessageButton.TabIndex = 10;
-            this.PrivateMessageButton.Text = "Private Message";
-            this.PrivateMessageButton.UseVisualStyleBackColor = true;
-            this.PrivateMessageButton.Click += new System.EventHandler(this.PrivateMessageButton_Click);
-            // 
-            // LogoutMenuItem
-            // 
-            this.LogoutMenuItem.Name = "LogoutMenuItem";
-            this.LogoutMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.LogoutMenuItem.Text = "Logout";
-            this.LogoutMenuItem.Click += new System.EventHandler(this.LogoutMenuItem_Click);
+            this.ActiveUsersTextBox.FormattingEnabled = true;
+            this.ActiveUsersTextBox.Location = new System.Drawing.Point(16, 44);
+            this.ActiveUsersTextBox.Name = "ActiveUsersTextBox";
+            this.ActiveUsersTextBox.Size = new System.Drawing.Size(223, 420);
+            this.ActiveUsersTextBox.TabIndex = 10;
+            this.ActiveUsersTextBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ActiveUsersTextBox_MouseDoubleClick);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(686, 580);
-            this.Controls.Add(this.PrivateMessageButton);
+            this.Controls.Add(this.ActiveUsersTextBox);
             this.Controls.Add(this.PublicMessageButton);
-            this.Controls.Add(this.ColorButton);
-            this.Controls.Add(this.FontButton);
             this.Controls.Add(this.PublicMessageTextBox);
             this.Controls.Add(this.PublicMessageLabel);
             this.Controls.Add(this.PublicChatTextBox);
             this.Controls.Add(this.PublicChatLabel);
-            this.Controls.Add(this.ActiveUsersTextBox);
             this.Controls.Add(this.CurrentUsersLabel);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -240,16 +207,13 @@
         private System.Windows.Forms.ToolStripMenuItem AboutMenu;
         private System.Windows.Forms.ToolStripMenuItem AuthorsMenuItem;
         private System.Windows.Forms.Label CurrentUsersLabel;
-        public System.Windows.Forms.RichTextBox ActiveUsersTextBox;
         private System.Windows.Forms.Label PublicChatLabel;
         public System.Windows.Forms.RichTextBox PublicChatTextBox;
         private System.Windows.Forms.Label PublicMessageLabel;
         private System.Windows.Forms.RichTextBox PublicMessageTextBox;
-        private System.Windows.Forms.Button FontButton;
-        private System.Windows.Forms.Button ColorButton;
         private System.Windows.Forms.Button PublicMessageButton;
-        private System.Windows.Forms.Button PrivateMessageButton;
         private System.Windows.Forms.ToolStripMenuItem LogoutMenuItem;
+        private System.Windows.Forms.ListBox ActiveUsersTextBox;
     }
 }
 
