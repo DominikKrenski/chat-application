@@ -119,13 +119,14 @@ namespace Client
             }
         }
 
-        public void OpenPrivateChatForm(string sender, string message)
+        /*public void OpenPrivateChatForm(string sender, string message)
         {
             Console.WriteLine("Otwieram okno prywatnego czatu");
             PrivateChatForm form = new PrivateChatForm();
+            form.PrivateUsersListBox.Items.Add(sender);
             form.PrivateChatTextBox.Text += $"{sender}: {message}{Environment.NewLine}";
             form.Show();
-        }
+        }*/
 
         public void UpdatePrivateChatForm(string sender, string message)
         {

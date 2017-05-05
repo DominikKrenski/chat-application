@@ -75,7 +75,29 @@ namespace Client
 
         public void UpdatePrivateChatForm(string sender, string message)
         {
+            string item = "";
+
+            // Sprawdzenie czy lista zawiera już takiego nadawcę
+            bool exists = false;
+
+            for (int i = 0; i < PrivateUsersListBox.Items.Count; i++)
+            {
+                item = PrivateUsersListBox.Items[i].ToString();
+
+                if (item.Equals(sender))
+                {
+                    exists = true;
+                    break;
+                }
+            }
+
+            if (!exists)
+            {
+                PrivateUsersListBox.Items.Add(sender);
+            }
+
             PrivateChatTextBox.Text += $"{sender}: {message}{Environment.NewLine}";
+            _receiver = sender; // to zostało ostatnio dodane
         }
 
         public void UpdatePublicChatTextBox(string login, string message)
@@ -95,7 +117,18 @@ namespace Client
             string senderLogin = mainForm.Login;
             string message = PrivateMessageTextBox.Text;
             PrivateMessageTextBox.Text = "";
+            PrivateChatTextBox.Text += $"{senderLogin}: {message}{Environment.NewLine}";
             _client.SendPrivateMessage(senderLogin, _receiver, message);
+        }
+
+        private void PrivateUsersListBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (PrivateUsersListBox.SelectedItem != null)
+            {
+                _receiver = PrivateUsersListBox.SelectedItem.ToString();
+
+                PrivateUsersListBox.ClearSelected();
+            }
         }
     }
 }
