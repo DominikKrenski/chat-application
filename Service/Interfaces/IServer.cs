@@ -21,6 +21,9 @@ namespace Service.Interfaces
         void Logout();
 
         [OperationContract(IsOneWay = true)]
+        void ExitApplication(string sender, string message);
+
+        [OperationContract(IsOneWay = true)]
         void SendPublicMessage(string message);
 
         [OperationContract(IsOneWay = true)]

@@ -252,8 +252,11 @@ namespace Service.Implementations
             // Usunięcie elementu z listy zarejestrowanych użytkowników
             _users.Remove(context);
 
-            // Zaktualizowanie listy obecnie zalogowanych użytkowników u pozostałych podłączonych klientów
+            // Zamknięcie połączenia z głównym oknem aplikacji
+            var connection = (ICommunicationObject)context;
+            connection.Close();
 
+            // Zaktualizowanie listy obecnie zalogowanych użytkowników u pozostałych podłączonych klientów
             foreach (var key in _users.Keys)
             {
                 users.Add(_users[key]);
@@ -264,6 +267,35 @@ namespace Service.Implementations
                 item.UpdateUsersList(users);
                 item.UpdatePublicChatTextBox(login, $"LOGGED OUT AT {DateTime.Now.ToString()}");
             }
+        }
+
+        public void ExitApplication(string sender, string message)
+        {
+            var context = OperationContext.Current.GetCallbackChannel<IServerCallback>();
+
+            // Usunięcie użytkownika z listy aktywnych użytkowników
+            foreach(var key in _users.Keys)
+            {
+                if (!_users[key].Equals(sender))
+                {
+                    Console.WriteLine($"Użytkownik {sender} zakończył pracę z aplikacją");
+                    key.UpdateExitMainForm(sender, message);
+                }
+            }
+
+            // Usunięcie użytkownika z listy aktywnych użytkowników
+            foreach(var key in _users.Keys)
+            {
+                if(_users[key].Equals(sender))
+                {
+                    _users.Remove(key);
+                    break;
+                }
+            }
+
+            // Zamknięcie połączenie z głównym oknem aplikacji
+            var channel = (ICommunicationObject)context;
+            channel.Close();
         }
     }
 }

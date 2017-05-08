@@ -165,5 +165,10 @@ namespace Client
             _client.ExitPrivateMessage(userLogin, users.ToArray<string>(), $"Zakończenie rozmowy prywatnej");
             this.Close();
         }
+
+        public void UpdateExitMainForm(string sender, string message)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

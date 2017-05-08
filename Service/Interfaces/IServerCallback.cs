@@ -35,5 +35,8 @@ namespace Service.Interfaces
 
         [OperationContract(IsOneWay = true)]
         void UpdateLogoutPrivateChatForm(string sender, string[] users, string message);
+
+        [OperationContract(IsOneWay = true)]
+        void UpdateExitMainForm(string sender, string message);
     }
 }

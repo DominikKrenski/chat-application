@@ -102,5 +102,10 @@ namespace Client
         {
             throw new NotImplementedException();
         }
+
+        public void UpdateExitMainForm(string sender, string message)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

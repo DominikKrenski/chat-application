@@ -119,15 +119,6 @@ namespace Client
             }
         }
 
-        /*public void OpenPrivateChatForm(string sender, string message)
-        {
-            Console.WriteLine("Otwieram okno prywatnego czatu");
-            PrivateChatForm form = new PrivateChatForm();
-            form.PrivateUsersListBox.Items.Add(sender);
-            form.PrivateChatTextBox.Text += $"{sender}: {message}{Environment.NewLine}";
-            form.Show();
-        }*/
-
         public void UpdatePrivateChatForm(string sender, string message)
         {
             throw new NotImplementedException();
@@ -144,6 +135,25 @@ namespace Client
         public void UpdateLogoutPrivateChatForm(string sender, string[] users, string message)
         {
             throw new NotImplementedException();
+        }
+
+        private void ExitMenuItem_Click(object sender, EventArgs e)
+        {
+            Client.ExitApplication(Login, $"EXIT APPLICATION AT: {DateTime.Now.ToString()}");
+
+            this.Close();
+        }
+
+        public void UpdateExitMainForm(string sender, string message)
+        {
+            foreach(var item in ActiveUsersTextBox.Items)
+            {
+                if (sender.Equals(item.ToString()))
+                {
+                    ActiveUsersTextBox.Items.Remove(item);
+                    PublicChatTextBox.Text += $"{sender}: {message}{Environment.NewLine}";
+                }
+            }
         }
     }
 }

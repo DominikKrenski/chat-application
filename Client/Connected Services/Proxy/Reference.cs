@@ -237,6 +237,12 @@ namespace Client.Proxy {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/Logout")]
         System.Threading.Tasks.Task LogoutAsync();
         
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/ExitApplication")]
+        void ExitApplication(string sender, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/ExitApplication")]
+        System.Threading.Tasks.Task ExitApplicationAsync(string sender, string message);
+        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/SendPublicMessage")]
         void SendPublicMessage(string message);
         
@@ -285,6 +291,9 @@ namespace Client.Proxy {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/UpdateLogoutPrivateChatForm")]
         void UpdateLogoutPrivateChatForm(string sender, string[] users, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/UpdateExitMainForm")]
+        void UpdateExitMainForm(string sender, string message);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -337,6 +346,14 @@ namespace Client.Proxy {
         
         public System.Threading.Tasks.Task LogoutAsync() {
             return base.Channel.LogoutAsync();
+        }
+        
+        public void ExitApplication(string sender, string message) {
+            base.Channel.ExitApplication(sender, message);
+        }
+        
+        public System.Threading.Tasks.Task ExitApplicationAsync(string sender, string message) {
+            return base.Channel.ExitApplicationAsync(sender, message);
         }
         
         public void SendPublicMessage(string message) {
