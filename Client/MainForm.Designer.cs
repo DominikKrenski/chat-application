@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.FileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.LoginMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,7 +43,8 @@
             this.PublicMessageLabel = new System.Windows.Forms.Label();
             this.PublicMessageTextBox = new System.Windows.Forms.RichTextBox();
             this.PublicMessageButton = new System.Windows.Forms.Button();
-            this.ActiveUsersTextBox = new System.Windows.Forms.ListBox();
+            this.ActiveUsersTextBox = new System.Windows.Forms.ListView();
+            this.AvatarList = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,28 +73,28 @@
             // LoginMenuItem
             // 
             this.LoginMenuItem.Name = "LoginMenuItem";
-            this.LoginMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.LoginMenuItem.Size = new System.Drawing.Size(116, 22);
             this.LoginMenuItem.Text = "Login";
             this.LoginMenuItem.Click += new System.EventHandler(this.LoginMenuItem_Click);
             // 
             // RegisterMenuItem
             // 
             this.RegisterMenuItem.Name = "RegisterMenuItem";
-            this.RegisterMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.RegisterMenuItem.Size = new System.Drawing.Size(116, 22);
             this.RegisterMenuItem.Text = "Register";
             this.RegisterMenuItem.Click += new System.EventHandler(this.RegisterMenuItem_Click);
             // 
             // ExitMenuItem
             // 
             this.ExitMenuItem.Name = "ExitMenuItem";
-            this.ExitMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ExitMenuItem.Size = new System.Drawing.Size(116, 22);
             this.ExitMenuItem.Text = "Exit";
             this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
             // 
             // LogoutMenuItem
             // 
             this.LogoutMenuItem.Name = "LogoutMenuItem";
-            this.LogoutMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.LogoutMenuItem.Size = new System.Drawing.Size(116, 22);
             this.LogoutMenuItem.Text = "Logout";
             this.LogoutMenuItem.Click += new System.EventHandler(this.LogoutMenuItem_Click);
             // 
@@ -167,12 +169,18 @@
             // 
             // ActiveUsersTextBox
             // 
-            this.ActiveUsersTextBox.FormattingEnabled = true;
             this.ActiveUsersTextBox.Location = new System.Drawing.Point(16, 44);
+            this.ActiveUsersTextBox.MultiSelect = false;
             this.ActiveUsersTextBox.Name = "ActiveUsersTextBox";
-            this.ActiveUsersTextBox.Size = new System.Drawing.Size(223, 420);
+            this.ActiveUsersTextBox.Size = new System.Drawing.Size(223, 421);
             this.ActiveUsersTextBox.TabIndex = 10;
-            this.ActiveUsersTextBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ActiveUsersTextBox_MouseDoubleClick);
+            this.ActiveUsersTextBox.UseCompatibleStateImageBehavior = false;
+            // 
+            // AvatarList
+            // 
+            this.AvatarList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.AvatarList.ImageSize = new System.Drawing.Size(64, 64);
+            this.AvatarList.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // MainForm
             // 
@@ -214,7 +222,8 @@
         private System.Windows.Forms.RichTextBox PublicMessageTextBox;
         private System.Windows.Forms.Button PublicMessageButton;
         private System.Windows.Forms.ToolStripMenuItem LogoutMenuItem;
-        private System.Windows.Forms.ListBox ActiveUsersTextBox;
+        private System.Windows.Forms.ListView ActiveUsersTextBox;
+        private System.Windows.Forms.ImageList AvatarList;
     }
 }
 

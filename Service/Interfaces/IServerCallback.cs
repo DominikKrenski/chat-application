@@ -15,8 +15,11 @@ namespace Service.Interfaces
         [OperationContract(IsOneWay = true)]
         void LoginErrorCallback(string message);
 
+        //[OperationContract(IsOneWay = true)]
+        //void UpdateUsersList(IList<string> users);
+
         [OperationContract(IsOneWay = true)]
-        void UpdateUsersList(IList<string> users);
+        void UpdateUsersList(IList<string> users, byte[][] avatars);
 
         [OperationContract(IsOneWay = true)]
         void UpdatePublicChatTextBox(string login, string message);

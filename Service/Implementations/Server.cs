@@ -26,6 +26,9 @@ namespace Service.Implementations
             // LISTA ZAWIERAJĄCA SPIS AKTUALNIE ZALOGOWANYCH UŻYTKOWNIKÓW
             IList<string> users = new List<string>();
 
+            // LISTA ZAWIERAJĄCA BINARNĄ REPREZENTACJĘ AWATARÓW
+            List<byte[]> avatars = new List<byte[]>();
+
             Console.WriteLine($"Żądanie logowania użytkownika: {user.Login} {user.Password}");
 
             using (var db = new ServiceDbContext())
@@ -57,14 +60,30 @@ namespace Service.Implementations
                             {
                                 _users[context] = user.Login;
 
+                                // Dodawanie do listy awatarów
+                                
+                                /*for (int i = 0; i < _users.Count; i++ )
+                                {
+                                    byte[] item = (from entity in db.Users where entity.Login == user.Login select entity.Avatar).First();
+                                    avatars.Add(new List<byte[]>());
+                                    avatars[i].Add(item);
+                                }*/
+
                                 foreach (var item in _users.Values)
                                 {
+                                    byte[] avatar = (from entity in db.Users where entity.Login == item select entity.Avatar).First();
+                                    //avatars.Add(new List<byte[]>());
+                                    //avatars[i].Add(avatar);
+                                    avatars.Add(avatar);
                                     users.Add(item);
                                 }
 
+                                // Zamiana listy na tablicę dwuwymiarową
+                                byte[][] avatarArray = avatars.Select(a => a.ToArray()).ToArray();
+
                                 foreach (var item in _users.Keys)
                                 {
-                                    item.UpdateUsersList(users);
+                                    item.UpdateUsersList(users, avatarArray);
                                 }
                             }
                             
@@ -265,7 +284,7 @@ namespace Service.Implementations
 
             foreach (var item in _users.Keys)
             {
-                item.UpdateUsersList(users);
+                //item.UpdateUsersList(users);          PAMIĘTAĆ, ŻEBY ZMIENIĆ
                 item.UpdatePublicChatTextBox(login, $"LOGGED OUT AT {DateTime.Now.ToString()}");
             }
         }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -75,6 +77,25 @@ namespace Client
             }
         }
 
+        public void UpdateUsersList(string[] users, byte[][] avatars)
+        {
+            ActiveUsersTextBox.Items.Clear();
+
+            for (int i = 0; i < users.Count(); i++)
+            {
+                using (Image image = Image.FromStream(new MemoryStream(avatars[i])))
+                {
+                    if (File.Exists($"{users[i]}.png"))
+                    {
+                        File.Delete($"{users[i]}.png");
+                    }
+
+                    image.Save($"{users[i]}.png", ImageFormat.Png);
+                }
+                ActiveUsersTextBox.Items.Add(users[i]);
+            }
+        }
+
         public void UpdatePublicChatTextBox(string login, string message)
         {
             PublicChatTextBox.Text += $"{login}: {message}{Environment.NewLine}";
@@ -111,12 +132,18 @@ namespace Client
 
         private void ActiveUsersTextBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (ActiveUsersTextBox.SelectedItem != null)
+            // Pobranie indeksu wybranego elementu
+            var index = ActiveUsersTextBox.SelectedIndices[0];
+
+            PrivateChatForm form = new PrivateChatForm(ActiveUsersTextBox.SelectedIndices[0].ToString());
+            form.Show();
+
+            /*if (ActiveUsersTextBox.SelectedItem != null)
             {
                 PrivateChatForm form = new PrivateChatForm(ActiveUsersTextBox.SelectedItem.ToString());
                 form.Show();
                 ActiveUsersTextBox.ClearSelected();
-            }
+            }*/
         }
 
         public void UpdatePrivateChatForm(string sender, string message)
@@ -146,14 +173,14 @@ namespace Client
 
         public void UpdateExitMainForm(string sender, string message)
         {
-            foreach(var item in ActiveUsersTextBox.Items)
+            /*foreach(var item in ActiveUsersTextBox.Items)
             {
                 if (sender.Equals(item.ToString()))
                 {
                     ActiveUsersTextBox.Items.Remove(item);
                     PublicChatTextBox.Text += $"{sender}: {message}{Environment.NewLine}";
                 }
-            }
+            }*/
         }
     }
 }

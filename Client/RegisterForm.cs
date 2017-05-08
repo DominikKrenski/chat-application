@@ -136,5 +136,10 @@ namespace Client
                 _filePath = name;
             }
         }
+
+        public void UpdateUsersList(string[] users, byte[][] avatars)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

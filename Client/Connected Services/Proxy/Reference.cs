@@ -288,7 +288,7 @@ namespace Client.Proxy {
         void LoginErrorCallback(string message);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/UpdateUsersList")]
-        void UpdateUsersList(string[] users);
+        void UpdateUsersList(string[] users, byte[][] avatars);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/UpdatePublicChatTextBox")]
         void UpdatePublicChatTextBox(string login, string message);

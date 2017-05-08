@@ -170,5 +170,10 @@ namespace Client
         {
             throw new NotImplementedException();
         }
+
+        public void UpdateUsersList(string[] users, byte[][] avatars)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -68,6 +68,11 @@ namespace Client
             return;
         }
 
+        public void UpdateUsersList(string[] users, byte[][] avatars)
+        {
+            throw new NotImplementedException();
+        }
+
         private void LoginButton_Click(object sender, EventArgs e)
         {
             MainForm form = (MainForm)Application.OpenForms[0];
