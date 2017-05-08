@@ -38,6 +38,11 @@ namespace Client
             return;
         }
 
+        public void UpdateLogoutPrivateChatForm(string sender, string[] users, string message)
+        {
+            throw new NotImplementedException();
+        }
+
         public void UpdateLogoutUsersList()
         {
             return;

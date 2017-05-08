@@ -9,6 +9,8 @@ using Service.Data;
 using Service.Models;
 using System.Data.Entity.Validation;
 using System.Data.Entity.Core;
+using Client.Proxy;
+using System.Threading.Tasks;
 
 namespace Service.Implementations
 {
@@ -200,36 +202,16 @@ namespace Service.Implementations
             }
         }
 
-        public void ExitPrivateMessage(string sender, string[] users, string message)
+        public void SendPrivateChatExitNotification(string sender, string[] users, string message)
         {
-            Console.WriteLine($"Zakończenie rozmowy prywatnej przez {sender}");
-            Console.WriteLine("Wiadomość zostanie rozesłana do użytkowników");
+            Console.WriteLine($"Użytkownik {sender} kończy prywatną rozmowę");
+            Console.WriteLine("Lista użytkowników, do których należy wysłać wiadomość");
             foreach(var user in users)
             {
                 Console.WriteLine(user);
             }
 
-            var context = OperationContext.Current.GetCallbackChannel<IServerCallback>();
-
-            // Rozesłanie informacji do użytkowników prowadzących rozmowę prywatną z danym użytkownikiem
-            foreach(var user in users)
-            {
-                foreach(var key in _privateUsers.Keys)
-                {
-                    if (_privateUsers[key].Equals(user))
-                    {
-                        key.UpdateLogoutPrivateChatForm(sender, users, message);
-                        break;
-                    }
-                }
-            }
-
-            // Usunięcie użytkownika z listy użytkowników prowadzących prywatne rozmowy
-            _privateUsers.Remove(context);
-
-            // Zamknięcie kanału użytkownika kończącego rozmowę prywatną
-            var channel = (ICommunicationObject)context;
-            channel.Close();
+            
         }
 
         public void Logout()

@@ -100,6 +100,22 @@ namespace Client
             _receiver = sender; // to zostało ostatnio dodane
         }
 
+        public void UpdateLogoutPrivateChatForm(string sender, string[] users, string message)
+        {
+            // Usunięcie użytkownika z listy użytkowników prowadzących rozmowy prywatne
+            foreach(var item in PrivateUsersListBox.Items)
+            {
+                if (sender.Equals(item.ToString()))
+                {
+                    PrivateUsersListBox.Items.Remove(item);
+                    break;
+                }
+            }
+
+            PrivateChatTextBox.Text += $"{sender}: {message}";
+        }
+
+
         public void UpdatePublicChatTextBox(string login, string message)
         {
             throw new NotImplementedException();
@@ -129,6 +145,24 @@ namespace Client
 
                 PrivateUsersListBox.ClearSelected();
             }
+        }
+
+        private void EndConversationFileItem_Click(object sender, EventArgs e)
+        {
+
+            MainForm mainForm = (MainForm)Application.OpenForms[0];
+
+            var userLogin = mainForm.Login;
+
+            IList<string> users = new List<string>();
+
+            // Pobranie nazw użytkowników, do których należy wysłać informację o zakończeniu rozmowy
+            foreach(var item in PrivateUsersListBox.Items)
+            {
+                users.Add(item.ToString());
+            }
+
+            _client.ExitPrivateMessage(userLogin, users.ToArray<string>(), $"Zakończenie rozmowy prywatnej");
         }
     }
 }

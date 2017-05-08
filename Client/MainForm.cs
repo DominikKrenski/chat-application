@@ -140,5 +140,10 @@ namespace Client
             form.PrivateChatTextBox.Text += $"{sender}: {message}{Environment.NewLine}";
             form.Show();
         }
+
+        public void UpdateLogoutPrivateChatForm(string sender, string[] users, string message)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

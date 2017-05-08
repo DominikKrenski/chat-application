@@ -97,5 +97,10 @@ namespace Client
         {
             throw new NotImplementedException();
         }
+
+        public void UpdateLogoutPrivateChatForm(string sender, string[] users, string message)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

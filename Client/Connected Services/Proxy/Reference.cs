@@ -248,6 +248,12 @@ namespace Client.Proxy {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/SendPrivateMessage")]
         System.Threading.Tasks.Task SendPrivateMessageAsync(string sender, string receiver, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/ExitPrivateMessage")]
+        void ExitPrivateMessage(string sender, string[] users, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/ExitPrivateMessage")]
+        System.Threading.Tasks.Task ExitPrivateMessageAsync(string sender, string[] users, string message);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -276,6 +282,9 @@ namespace Client.Proxy {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/UpdatePrivateChatForm")]
         void UpdatePrivateChatForm(string sender, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServer/UpdateLogoutPrivateChatForm")]
+        void UpdateLogoutPrivateChatForm(string sender, string[] users, string message);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -344,6 +353,14 @@ namespace Client.Proxy {
         
         public System.Threading.Tasks.Task SendPrivateMessageAsync(string sender, string receiver, string message) {
             return base.Channel.SendPrivateMessageAsync(sender, receiver, message);
+        }
+        
+        public void ExitPrivateMessage(string sender, string[] users, string message) {
+            base.Channel.ExitPrivateMessage(sender, users, message);
+        }
+        
+        public System.Threading.Tasks.Task ExitPrivateMessageAsync(string sender, string[] users, string message) {
+            return base.Channel.ExitPrivateMessageAsync(sender, users, message);
         }
     }
 }

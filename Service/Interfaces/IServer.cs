@@ -26,5 +26,7 @@ namespace Service.Interfaces
         [OperationContract(IsOneWay = true)]
         void SendPrivateMessage(string sender, string receiver, string message);
 
+        [OperationContract(IsOneWay = true)]
+        void ExitPrivateMessage(string sender, string[] users, string message);
     }
 }
