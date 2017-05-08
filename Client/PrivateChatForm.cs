@@ -163,6 +163,7 @@ namespace Client
             }
 
             _client.ExitPrivateMessage(userLogin, users.ToArray<string>(), $"Zakończenie rozmowy prywatnej");
+            this.Close();
         }
     }
 }
