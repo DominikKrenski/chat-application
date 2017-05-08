@@ -58,5 +58,8 @@ namespace Service.Models
         [RegularExpression(@"[0-9]{1,2}", ErrorMessage = "Age must consist of digits only")]
         [Required(ErrorMessage = "Age cannot be blank")]
         public int Age { get; set; }
+
+        [Column("avatar")]
+        public byte[] Avatar { get; set; }
     }
 }

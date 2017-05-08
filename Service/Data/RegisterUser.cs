@@ -30,5 +30,8 @@ namespace Service.Data
 
         [DataMember]
         public int Age { get; set; }
+
+        [DataMember]
+        public byte[] Avatar { get; set; }
     }
 }

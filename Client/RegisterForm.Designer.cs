@@ -43,6 +43,9 @@
             this.AgeLabel = new System.Windows.Forms.Label();
             this.AgeTextBox = new System.Windows.Forms.TextBox();
             this.RegisterButton = new System.Windows.Forms.Button();
+            this.AvatarFieldLabel = new System.Windows.Forms.Label();
+            this.FolderBrowserDialogButton = new System.Windows.Forms.Button();
+            this.FilePathTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // LoginLabel
@@ -160,7 +163,7 @@
             // 
             // RegisterButton
             // 
-            this.RegisterButton.Location = new System.Drawing.Point(160, 355);
+            this.RegisterButton.Location = new System.Drawing.Point(164, 437);
             this.RegisterButton.Name = "RegisterButton";
             this.RegisterButton.Size = new System.Drawing.Size(105, 23);
             this.RegisterButton.TabIndex = 14;
@@ -168,11 +171,43 @@
             this.RegisterButton.UseVisualStyleBackColor = true;
             this.RegisterButton.Click += new System.EventHandler(this.RegisterButton_Click);
             // 
+            // AvatarFieldLabel
+            // 
+            this.AvatarFieldLabel.AutoSize = true;
+            this.AvatarFieldLabel.Location = new System.Drawing.Point(12, 348);
+            this.AvatarFieldLabel.Name = "AvatarFieldLabel";
+            this.AvatarFieldLabel.Size = new System.Drawing.Size(38, 13);
+            this.AvatarFieldLabel.TabIndex = 15;
+            this.AvatarFieldLabel.Text = "Avatar";
+            // 
+            // FolderBrowserDialogButton
+            // 
+            this.FolderBrowserDialogButton.Location = new System.Drawing.Point(15, 364);
+            this.FolderBrowserDialogButton.Name = "FolderBrowserDialogButton";
+            this.FolderBrowserDialogButton.Size = new System.Drawing.Size(75, 23);
+            this.FolderBrowserDialogButton.TabIndex = 16;
+            this.FolderBrowserDialogButton.Text = "Choose File";
+            this.FolderBrowserDialogButton.UseVisualStyleBackColor = true;
+            this.FolderBrowserDialogButton.Click += new System.EventHandler(this.FolderBrowserDialogButton_Click);
+            // 
+            // FilePathTextBox
+            // 
+            this.FilePathTextBox.BackColor = System.Drawing.SystemColors.Info;
+            this.FilePathTextBox.Enabled = false;
+            this.FilePathTextBox.Location = new System.Drawing.Point(96, 366);
+            this.FilePathTextBox.Name = "FilePathTextBox";
+            this.FilePathTextBox.ReadOnly = true;
+            this.FilePathTextBox.Size = new System.Drawing.Size(298, 20);
+            this.FilePathTextBox.TabIndex = 17;
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(406, 390);
+            this.ClientSize = new System.Drawing.Size(406, 472);
+            this.Controls.Add(this.FilePathTextBox);
+            this.Controls.Add(this.FolderBrowserDialogButton);
+            this.Controls.Add(this.AvatarFieldLabel);
             this.Controls.Add(this.RegisterButton);
             this.Controls.Add(this.AgeTextBox);
             this.Controls.Add(this.AgeLabel);
@@ -213,5 +248,8 @@
         private System.Windows.Forms.Label AgeLabel;
         private System.Windows.Forms.TextBox AgeTextBox;
         private System.Windows.Forms.Button RegisterButton;
+        private System.Windows.Forms.Label AvatarFieldLabel;
+        private System.Windows.Forms.Button FolderBrowserDialogButton;
+        private System.Windows.Forms.TextBox FilePathTextBox;
     }
 }

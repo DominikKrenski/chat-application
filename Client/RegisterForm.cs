@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -14,6 +15,8 @@ namespace Client
     public partial class RegisterForm : Form, Proxy.IServerCallback
     {
         private enum Sex { Mężczyzna, Kobieta };
+
+        private string _filePath = "";
 
         public RegisterForm()
         {
@@ -39,6 +42,18 @@ namespace Client
                 throw new NotImplementedException();
             }
 
+            // Zamiana obrazka na tablicę bajtów
+            byte[] avatar;
+            string ext = Path.GetExtension(_filePath);
+
+            Image image = Image.FromFile(_filePath);
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                avatar = ms.ToArray();
+            }
+
             Proxy.RegisterUser user = new Proxy.RegisterUser
             {
                 Login = LoginTextBox.Text,
@@ -47,7 +62,8 @@ namespace Client
                 Name = NameTextBox.Text,
                 Surname = SurnameTextBox.Text,
                 Sex = SexComboBox.Text,
-                Age = age
+                Age = age,
+                Avatar = avatar
             };
 
             form.Client.Register(user);
@@ -106,6 +122,19 @@ namespace Client
         public void UpdateExitMainForm(string sender, string message)
         {
             throw new NotImplementedException();
+        }
+
+        private void FolderBrowserDialogButton_Click(object sender, EventArgs e)
+        {
+            // Pobranie ścieżki do awatara
+            OpenFileDialog dialog = new OpenFileDialog();
+
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string name = dialog.FileName;
+                FilePathTextBox.Text = name;
+                _filePath = name;
+            }
         }
     }
 }

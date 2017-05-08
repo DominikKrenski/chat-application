@@ -26,6 +26,9 @@ namespace Client.Proxy {
         private int AgeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] AvatarField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string LoginField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -62,6 +65,19 @@ namespace Client.Proxy {
                 if ((this.AgeField.Equals(value) != true)) {
                     this.AgeField = value;
                     this.RaisePropertyChanged("Age");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Avatar {
+            get {
+                return this.AvatarField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AvatarField, value) != true)) {
+                    this.AvatarField = value;
+                    this.RaisePropertyChanged("Avatar");
                 }
             }
         }

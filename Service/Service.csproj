@@ -60,6 +60,10 @@
     <Compile Include="Migrations\201705021620512_InitialMigration.Designer.cs">
       <DependentUpon>201705021620512_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705081724329_AddAvatarField.cs" />
+    <Compile Include="Migrations\201705081724329_AddAvatarField.Designer.cs">
+      <DependentUpon>201705081724329_AddAvatarField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ServiceDbContext.cs" />
     <Compile Include="Models\User.cs" />
@@ -75,6 +79,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705021620512_InitialMigration.resx">
       <DependentUpon>201705021620512_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705081724329_AddAvatarField.resx">
+      <DependentUpon>201705081724329_AddAvatarField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

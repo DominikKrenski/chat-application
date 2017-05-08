@@ -95,7 +95,8 @@ namespace Service.Implementations
                 Name = user.Name,
                 Surname = user.Surname,
                 Sex = user.Sex,
-                Age = user.Age
+                Age = user.Age,
+                Avatar = user.Avatar
             };
 
             using (var db = new ServiceDbContext())
