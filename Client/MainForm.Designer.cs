@@ -169,17 +169,22 @@
             // 
             // ActiveUsersTextBox
             // 
+            this.ActiveUsersTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ActiveUsersTextBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.ActiveUsersTextBox.LargeImageList = this.AvatarList;
             this.ActiveUsersTextBox.Location = new System.Drawing.Point(16, 44);
+            this.ActiveUsersTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 20, 2);
             this.ActiveUsersTextBox.MultiSelect = false;
             this.ActiveUsersTextBox.Name = "ActiveUsersTextBox";
             this.ActiveUsersTextBox.Size = new System.Drawing.Size(223, 421);
-            this.ActiveUsersTextBox.TabIndex = 10;
+            this.ActiveUsersTextBox.SmallImageList = this.AvatarList;
+            this.ActiveUsersTextBox.TabIndex = 3;
             this.ActiveUsersTextBox.UseCompatibleStateImageBehavior = false;
             // 
             // AvatarList
             // 
             this.AvatarList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.AvatarList.ImageSize = new System.Drawing.Size(64, 64);
+            this.AvatarList.ImageSize = new System.Drawing.Size(32, 32);
             this.AvatarList.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // MainForm

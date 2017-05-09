@@ -65,34 +65,51 @@ namespace Client
             result = MessageBox.Show(message, "LOGIN ERROR", MessageBoxButtons.OK);
         }
 
-        public void UpdateUsersList(string[] users)
-        {
-            //ActiveUsersTextBox.Text = "";
-            ActiveUsersTextBox.Items.Clear();
-
-            foreach (var item in users)
-            {
-                //ActiveUsersTextBox.Text += $"{item}{Environment.NewLine}";
-                ActiveUsersTextBox.Items.Add(item);
-            }
-        }
-
         public void UpdateUsersList(string[] users, byte[][] avatars)
         {
             ActiveUsersTextBox.Items.Clear();
+            AvatarList.Images.Clear();
+
+            if(!Directory.Exists($"C:\\Users\\Dominik\\Desktop\\Tmp\\{Login}"))
+            {
+                Directory.CreateDirectory($"C:\\Users\\Dominik\\Desktop\\Tmp\\{Login}");
+            }
+
+            ActiveUsersTextBox.View = View.Details;
+            ActiveUsersTextBox.GridLines = true;
+            ActiveUsersTextBox.FullRowSelect = true;
+
+            ActiveUsersTextBox.Columns.Add("", -2, HorizontalAlignment.Left);
+
+            AvatarList.ImageSize = new Size(32, 32);
+
+            // Przekonwertowanie tablicy bajtów na obraz, zapisanie go pod nazwą login.png i dodanie do ImageList
+            DirectoryInfo di = new DirectoryInfo($"C:\\Users\\Dominik\\Desktop\\Tmp");
+            foreach (var dir in di.EnumerateDirectories())
+            {
+                for (int i = 0; i < users.Count(); i++)
+                {
+                    using (Image image = Image.FromStream(new MemoryStream(avatars[i])))
+                    {
+                        if(!File.Exists($"C:\\Users\\Dominik\\Desktop\\Tmp\\{dir.Name}\\{users[i]}.png"))
+                            image.Save($"C:\\Users\\Dominik\\Desktop\\Tmp\\{dir.Name}\\{users[i]}.png", ImageFormat.Png);
+                    }
+                }
+            }
 
             for (int i = 0; i < users.Count(); i++)
             {
-                using (Image image = Image.FromStream(new MemoryStream(avatars[i])))
-                {
-                    if (File.Exists($"{users[i]}.png"))
-                    {
-                        File.Delete($"{users[i]}.png");
-                    }
+                AvatarList.Images.Add(Image.FromFile($"C:\\Users\\Dominik\\Desktop\\Tmp\\{Login}\\{users[i]}.png"));
+            }
 
-                    image.Save($"{users[i]}.png", ImageFormat.Png);
-                }
-                ActiveUsersTextBox.Items.Add(users[i]);
+            ActiveUsersTextBox.LargeImageList = AvatarList;
+            ActiveUsersTextBox.SmallImageList = AvatarList;
+
+            // Wyświetlenie awatara i nazwy użytkownika
+            for (int i = 0; i < users.Count(); i++)
+            {
+                ListViewItem item = new ListViewItem(users[i], i);
+                ActiveUsersTextBox.Items.Add(item);
             }
         }
 
