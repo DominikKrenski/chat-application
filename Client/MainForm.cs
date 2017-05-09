@@ -67,9 +67,17 @@ namespace Client
 
         public void UpdateUsersList(string[] users, byte[][] avatars)
         {
+            // Lista przechowująca ścieżki do awatarów aktualnie zalogowanych użytkowników
+            List<string> tmpAvatarList = new List<string>();
+
+
+            // Czyszczenie kontrolki ze wszystkich elementów
             ActiveUsersTextBox.Items.Clear();
+
+            // Wyczyszczenie kolekcji zawierającej awatary
             AvatarList.Images.Clear();
 
+            // Sprawdzenie, czy są już katalogi tymczasowe dla użytkowników do przechowywania ikonek
             if(!Directory.Exists($"C:\\Users\\Dominik\\Desktop\\Tmp\\{Login}"))
             {
                 Directory.CreateDirectory($"C:\\Users\\Dominik\\Desktop\\Tmp\\{Login}");
@@ -79,6 +87,7 @@ namespace Client
             ActiveUsersTextBox.GridLines = true;
             ActiveUsersTextBox.FullRowSelect = true;
 
+            // Dodanie jednej kolumny do ListView
             ActiveUsersTextBox.Columns.Add("", -2, HorizontalAlignment.Left);
 
             AvatarList.ImageSize = new Size(32, 32);
@@ -97,9 +106,29 @@ namespace Client
                 }
             }
 
+            // Załadowanie katalogu zawierającego awatary dla danego użytkownika
+            di = new DirectoryInfo($"C:\\Users\\Dominik\\Desktop\\Tmp\\{Login}");
+
+            // Pobranie wszystkich plików znajdujących się w danym katalogu
+            FileInfo[] files = di.GetFiles();
+
+            // Załadowanie aktualnie wykorzystywanych awatarów
             for (int i = 0; i < users.Count(); i++)
             {
-                AvatarList.Images.Add(Image.FromFile($"C:\\Users\\Dominik\\Desktop\\Tmp\\{Login}\\{users[i]}.png"));
+                for (int j = 0; j < files.Count(); j++)
+                {
+                    if($"{users[i]}.png".Equals($"{files[j].Name}"))
+                    {
+                        tmpAvatarList.Add($"C:\\Users\\Dominik\\Desktop\\Tmp\\{Login}\\{users[i]}.png");
+                        break;
+                    }
+                }
+             
+            }
+
+            for (int i = 0; i < users.Count(); i++)
+            {
+                AvatarList.Images.Add(Image.FromFile(tmpAvatarList[i]));
             }
 
             ActiveUsersTextBox.LargeImageList = AvatarList;
@@ -198,6 +227,11 @@ namespace Client
                     PublicChatTextBox.Text += $"{sender}: {message}{Environment.NewLine}";
                 }
             }*/
+        }
+
+        private void ActiveUsersTextBox_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(ActiveUsersTextBox.SelectedItems[0].Text);
         }
     }
 }

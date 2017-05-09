@@ -61,19 +61,9 @@ namespace Service.Implementations
                                 _users[context] = user.Login;
 
                                 // Dodawanie do listy awatarów
-                                
-                                /*for (int i = 0; i < _users.Count; i++ )
-                                {
-                                    byte[] item = (from entity in db.Users where entity.Login == user.Login select entity.Avatar).First();
-                                    avatars.Add(new List<byte[]>());
-                                    avatars[i].Add(item);
-                                }*/
-
                                 foreach (var item in _users.Values)
                                 {
                                     byte[] avatar = (from entity in db.Users where entity.Login == item select entity.Avatar).First();
-                                    //avatars.Add(new List<byte[]>());
-                                    //avatars[i].Add(avatar);
                                     avatars.Add(avatar);
                                     users.Add(item);
                                 }
@@ -256,15 +246,12 @@ namespace Service.Implementations
         {
             IList<string> users = new List<string>();
 
+            // LISTA ZAWIERAJĄCA BINARNĄ REPREZENTACJĘ AWATARÓW
+            List<byte[]> avatars = new List<byte[]>();
+
             var context = OperationContext.Current.GetCallbackChannel<IServerCallback>();
 
             Console.WriteLine($"Żądanie wylogowania użytkownika: {_users[context]}");
-
-            // Wyczyszczenie listy zalogowanych użytkowników u klienta, który się wylogował
-            context.UpdateLogoutUsersList();
-
-            // Wyczyszczenie okna rozmowy publicznej
-            context.UpdateLoginPublicChatTextBox();
 
             // Przypisanie nazwy użytkownika, który aktualnie się wylogowuje
             var login = _users[context];
@@ -272,19 +259,45 @@ namespace Service.Implementations
             // Usunięcie elementu z listy zarejestrowanych użytkowników
             _users.Remove(context);
 
+            using (var db = new ServiceDbContext())
+            {
+                foreach (var item in _users.Values)
+                {
+                    byte[] avatar = (from entity in db.Users where entity.Login == item select entity.Avatar).First();
+                    avatars.Add(avatar);
+                    users.Add(item);
+                }
+
+                // Zamiana listy na tablicę dwuwymiarową
+                byte[][] avatarArray = avatars.Select(a => a.ToArray()).ToArray();
+
+                foreach (var item in _users.Keys)
+                {
+                    item.UpdateUsersList(users, avatarArray);
+                }
+
+
+            }
+
+                // Wyczyszczenie listy zalogowanych użytkowników u klienta, który się wylogował
+                context.UpdateLogoutUsersList();
+
+            // Wyczyszczenie okna rozmowy publicznej
+            context.UpdateLoginPublicChatTextBox();
+
             // Zamknięcie połączenia z głównym oknem aplikacji
-            var connection = (ICommunicationObject)context;
-            connection.Close();
+            //var connection = (ICommunicationObject)context;
+            //connection.Close();
 
             // Zaktualizowanie listy obecnie zalogowanych użytkowników u pozostałych podłączonych klientów
-            foreach (var key in _users.Keys)
-            {
-                users.Add(_users[key]);
-            }
+            //foreach (var key in _users.Keys)
+            //{
+            //    users.Add(_users[key]);
+            //}
 
             foreach (var item in _users.Keys)
             {
-                //item.UpdateUsersList(users);          PAMIĘTAĆ, ŻEBY ZMIENIĆ
+                   
                 item.UpdatePublicChatTextBox(login, $"LOGGED OUT AT {DateTime.Now.ToString()}");
             }
         }

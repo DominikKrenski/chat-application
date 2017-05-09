@@ -180,6 +180,7 @@
             this.ActiveUsersTextBox.SmallImageList = this.AvatarList;
             this.ActiveUsersTextBox.TabIndex = 3;
             this.ActiveUsersTextBox.UseCompatibleStateImageBehavior = false;
+            this.ActiveUsersTextBox.Click += new System.EventHandler(this.ActiveUsersTextBox_Click);
             // 
             // AvatarList
             // 
