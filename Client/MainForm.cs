@@ -231,7 +231,9 @@ namespace Client
 
         private void ActiveUsersTextBox_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(ActiveUsersTextBox.SelectedItems[0].Text);
+            PrivateChatForm form = new PrivateChatForm(ActiveUsersTextBox.SelectedItems[0].Text);
+            form.Show();
+            //MessageBox.Show(ActiveUsersTextBox.SelectedItems[0].Text);
         }
     }
 }
