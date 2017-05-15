@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -37,18 +38,74 @@ namespace Client
             MainForm form = (MainForm)Application.OpenForms[0];
 
             int age;
+            byte[] avatar;
+            string ext = "";
+            Image image;
+            //string ext = Path.GetExtension(_filePath);
+            //Image image = Image.FromFile(_filePath);
 
-            if (!Int32.TryParse(AgeTextBox.Text, out age)){
-                throw new NotImplementedException();
+            try
+            {
+                // Sprawdzenie, czy wpisana wartość jest liczbą
+                if (!Int32.TryParse(AgeTextBox.Text, out age))
+                {
+                    throw new MyException("Wpisany wiek nie jest liczbą");
+                }
+
+                // Sprawdzenie, czy została podana ścieżka do pliku
+                if (_filePath.Equals(""))
+                {
+                    throw new MyException("Nie wybrano pliku");
+                }
+
+                ext = Path.GetExtension(_filePath);
+
+                // Sprawdzenie, czy obraz ma rozszerzenie .png
+                if (!ext.Equals(".png"))
+                {
+                    throw new MyException("Obraz musi mieć rozszerzenie .png");
+                }
+
+                image = Image.FromFile(_filePath);
+
+                // Sprawdzenie, czy obraz ma odpowiednie wymiary
+                if (image.Width != 32 || image.Height != 32)
+                {
+                    throw new MyException("Obraz musi mieć wymiary 32x32 px");
+                }
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    avatar = ms.ToArray();
+                }
+
+                Proxy.RegisterUser user = new Proxy.RegisterUser
+                {
+                    Login = LoginTextBox.Text,
+                    Password = PasswordTextBox.Text,
+                    PasswordConfirm = PasswordConfirmTextBox.Text,
+                    Name = NameTextBox.Text,
+                    Surname = SurnameTextBox.Text,
+                    Sex = SexComboBox.Text,
+                    Age = age,
+                    Avatar = avatar
+                };
+
+                form.Client.Register(user);
+            }
+            catch(MyException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
             // Zamiana obrazka na tablicę bajtów
-            byte[] avatar;
-            string ext = Path.GetExtension(_filePath);
+            //byte[] avatar;
+            //string ext = Path.GetExtension(_filePath);
 
-            Image image = Image.FromFile(_filePath);
+            //Image image = Image.FromFile(_filePath);
 
-            using (MemoryStream ms = new MemoryStream())
+            /*using (MemoryStream ms = new MemoryStream())
             {
                 image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                 avatar = ms.ToArray();
@@ -66,7 +123,7 @@ namespace Client
                 Avatar = avatar
             };
 
-            form.Client.Register(user);
+            form.Client.Register(user);*/
         }
 
         public void RegisterNotify(string message)

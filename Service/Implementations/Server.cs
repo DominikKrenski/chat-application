@@ -314,6 +314,10 @@ namespace Service.Implementations
                     Console.WriteLine($"Użytkownik {sender} zakończył pracę z aplikacją");
                     key.UpdateExitMainForm(sender, message);
                 }
+                /*else
+                {
+                    _users.Remove(key);
+                }*/
             }
 
             // Usunięcie użytkownika z listy aktywnych użytkowników

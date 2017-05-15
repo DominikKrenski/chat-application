@@ -78,9 +78,9 @@ namespace Client
             AvatarList.Images.Clear();
 
             // Sprawdzenie, czy są już katalogi tymczasowe dla użytkowników do przechowywania ikonek
-            if(!Directory.Exists($"C:\\Users\\Dominik\\Desktop\\Tmp\\{Login}"))
+            if(!Directory.Exists($"C:\\Users\\Dosia\\Desktop\\Tmp\\{Login}"))
             {
-                Directory.CreateDirectory($"C:\\Users\\Dominik\\Desktop\\Tmp\\{Login}");
+                Directory.CreateDirectory($"C:\\Users\\Dosia\\Desktop\\Tmp\\{Login}");
             }
 
             ActiveUsersTextBox.View = View.Details;
@@ -93,21 +93,21 @@ namespace Client
             AvatarList.ImageSize = new Size(32, 32);
 
             // Przekonwertowanie tablicy bajtów na obraz, zapisanie go pod nazwą login.png i dodanie do ImageList
-            DirectoryInfo di = new DirectoryInfo($"C:\\Users\\Dominik\\Desktop\\Tmp");
+            DirectoryInfo di = new DirectoryInfo($"C:\\Users\\Dosia\\Desktop\\Tmp");
             foreach (var dir in di.EnumerateDirectories())
             {
                 for (int i = 0; i < users.Count(); i++)
                 {
                     using (Image image = Image.FromStream(new MemoryStream(avatars[i])))
                     {
-                        if(!File.Exists($"C:\\Users\\Dominik\\Desktop\\Tmp\\{dir.Name}\\{users[i]}.png"))
-                            image.Save($"C:\\Users\\Dominik\\Desktop\\Tmp\\{dir.Name}\\{users[i]}.png", ImageFormat.Png);
+                        if(!File.Exists($"C:\\Users\\Dosia\\Desktop\\Tmp\\{dir.Name}\\{users[i]}.png"))
+                            image.Save($"C:\\Users\\Dosia\\Desktop\\Tmp\\{dir.Name}\\{users[i]}.png", ImageFormat.Png);
                     }
                 }
             }
 
             // Załadowanie katalogu zawierającego awatary dla danego użytkownika
-            di = new DirectoryInfo($"C:\\Users\\Dominik\\Desktop\\Tmp\\{Login}");
+            di = new DirectoryInfo($"C:\\Users\\Dosia\\Desktop\\Tmp\\{Login}");
 
             // Pobranie wszystkich plików znajdujących się w danym katalogu
             FileInfo[] files = di.GetFiles();
@@ -119,7 +119,7 @@ namespace Client
                 {
                     if($"{users[i]}.png".Equals($"{files[j].Name}"))
                     {
-                        tmpAvatarList.Add($"C:\\Users\\Dominik\\Desktop\\Tmp\\{Login}\\{users[i]}.png");
+                        tmpAvatarList.Add($"C:\\Users\\Dosia\\Desktop\\Tmp\\{Login}\\{users[i]}.png");
                         break;
                     }
                 }
@@ -219,14 +219,17 @@ namespace Client
 
         public void UpdateExitMainForm(string sender, string message)
         {
-            /*foreach(var item in ActiveUsersTextBox.Items)
+            foreach (ListViewItem item in ActiveUsersTextBox.Items)
             {
-                if (sender.Equals(item.ToString()))
+                if (sender.Equals(item.Text))
                 {
                     ActiveUsersTextBox.Items.Remove(item);
-                    PublicChatTextBox.Text += $"{sender}: {message}{Environment.NewLine}";
+                    break;
+                    //PublicChatTextBox.Text += $"{sender}: {message}{Environment.NewLine}";
                 }
-            }*/
+            }
+
+            PublicChatTextBox.Text += $"{sender}: {message}{Environment.NewLine}";
         }
 
         private void ActiveUsersTextBox_Click(object sender, EventArgs e)
